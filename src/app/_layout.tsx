@@ -1,18 +1,28 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useColorScheme } from 'react-native';
+import { View, Text } from 'react-native'
+import React from 'react'
+import { Stack } from 'expo-router'
 
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
-
-SplashScreen.preventAutoHideAsync();
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+export default function _layout() {
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AnimatedSplashOverlay />
-      <AppTabs />
-    </ThemeProvider>
-  );
+    <Stack>
+        <Stack.Screen name="index" options={{ headerShown: false, }}/>
+
+      <Stack.Screen name="auth" options={{ headerShown: false,}} />
+
+      <Stack.Screen name="(tabs)" options={{ headerShown: false, }}/>
+
+      <Stack.Screen name='self_transfer' options={{title:'Self Transfer',headerTitleAlign: 'center'}}  />
+      <Stack.Screen name='utility_bills' options={{title:'Utility Bills',headerTitleAlign: 'center'}}  />
+       <Stack.Screen name='send_money' options={{title:'Send Money',headerTitleAlign: 'center'}}  />
+      <Stack.Screen name='mobile_recharge' options={{title:'Mobile Recharge',headerTitleAlign: 'center'}}  />
+      <Stack.Screen name='upi' options={{title:'Send To UPI',headerTitleAlign: 'center'}}  />
+      <Stack.Screen name='credit_card_bill' options={{title:'Credit Card Bills',headerTitleAlign: 'center'}}  />
+      <Stack.Screen name='fasttag_payment' options={{title:'FASTag Payments',headerTitleAlign: 'center'}}  />
+      <Stack.Screen name='fasttag' options={{title:'FASTag Recharge',headerTitleAlign: 'center'}}  />
+      <Stack.Screen name='to_mobile' options={{title:'Mobile Recharge',headerTitleAlign: 'center'}}  />
+
+
+
+    </Stack>
+  )
 }
