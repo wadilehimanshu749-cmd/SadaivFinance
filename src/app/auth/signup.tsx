@@ -141,7 +141,7 @@ export default function signup() {
             </View>
 
             <Text style={styles.termsText}>
-              I agree to TouchPe's{" "}
+              I agree to Sadaiv's{" "}
               <Text style={styles.termsGreen}>
                 Terms & Conditions
               </Text>{" "}

@@ -1,6 +1,5 @@
 import React from "react";
-import { View, Text, TextInput, StyleSheet, ScrollView, TouchableOpacity, Image, Dimensions,} from "react-native";
-
+import { View, Text, TextInput, StyleSheet, ScrollView, TouchableOpacity, Image, Dimensions,ImageBackground} from "react-native";
 import Header from "../components/Header";
 import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -14,6 +13,7 @@ export default function HomeScreen() {
       <Header />
 
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
+        
         <View style={styles.greetingSection}>
           <View>
             <Text style={styles.smallGreeting}>Good Morning 👋</Text>
@@ -45,61 +45,112 @@ export default function HomeScreen() {
           </TouchableOpacity>
         </View>
 
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.accountsContainer}>
-          <View style={styles.accountCard}>
-            <View style={styles.accountTop}>
-              <View style={styles.bankLogo}>
-                <Image source={require('@/assets/images/hdfc.png')} style={styles.bankIcon} />
-              </View>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}contentContainerStyle={styles.accountsContainer}>
+            <ImageBackground source={require("@/assets/images/card3.png")} style={styles.accountCard} imageStyle={styles.accountCardImage}>
+              <View style={styles.accountHeader}>
+                <View style={styles.bankIdentity}>
+                  <View style={styles.bankLogo}>
+          <Image  source={require("@/assets/images/hdfc.png")}  style={styles.bankIcon}/>
+        </View>
 
-              <View style={styles.bankInfo}>
-                <Text style={styles.bankName}>HDFC Bank</Text>
+        <View style={styles.bankInfo}>
+          <Text style={styles.bankName}>HDFC Bank</Text>
 
-                <Text style={styles.accountNumber}>
-                  Savings •••• 1234
-                </Text>
-              </View>
+          <Text style={styles.accountNumber}>
+            Savings •••• 1234
+          </Text>
+        </View>
+      </View>
 
-            </View>
+      <TouchableOpacity style={styles.cardMenu}>
+        <Ionicons
+          name="ellipsis-horizontal"
+          size={18}
+          color="#5D675A"
+        />
+      </TouchableOpacity>
+    </View>
 
-            <View style={styles.balanceSection}>
-              <Text style={styles.balanceLabel}>Available Balance</Text>
+    <View style={styles.balanceSection}>
+      <Text style={styles.balanceLabel}>
+        Available Balance
+      </Text>
 
-              <Text style={styles.balance}>
-                ₹2,24,560.50
-              </Text>
-            </View>
-          </View>
+      <Text style={styles.balance}>
+        ₹2,24,560.50
+      </Text>
+    </View>
 
-          <View style={styles.accountCard}>
-            <View style={styles.accountTop}>
-              <View style={[styles.bankLogo, styles.sbiLogo]}>
-                <Image source={require('@/assets/images/sboi.png')} style={styles.bankIcon} />
-              </View>
+    <View style={styles.cardFooter}>
+      <View>
+        <Text style={styles.footerLabel}>Account Type</Text>
+        <Text style={styles.footerValue}>Primary Account</Text>
+      </View>
 
-              <View style={styles.bankInfo}>
-                <Text style={styles.bankName}>
-                  State Bank of India
-                </Text>
+      <View style={styles.activeBadge}>
+        <View style={styles.activeDot} />
+        <Text style={styles.activeText}>Active</Text>
+      </View>
+    </View>
+  </ImageBackground>
 
-                <Text style={styles.accountNumber}>
-                  Savings •••• 5678
-                </Text>
-              </View>
+    <ImageBackground source={require("@/assets/images/card3.png")} style={styles.accountCard2} imageStyle={styles.accountCardImage}>
+    <View style={styles.accountHeader}>
+      <View style={styles.bankIdentity}>
+        <View style={styles.bankLogo}>
+          <Image
+            source={require("@/assets/images/sboi.png")}
+            style={styles.bankIcon}
+          />
+        </View>
 
-            </View>
+        <View style={styles.bankInfo}>
+          <Text style={styles.bankName} numberOfLines={1}>
+            State Bank of India
+          </Text>
 
-            <View style={styles.balanceSection}>
-              <Text style={styles.balanceLabel}>Available Balance</Text>
+          <Text style={styles.accountNumber}>
+            Savings •••• 5678
+          </Text>
+        </View>
+      </View>
 
-              <Text style={styles.balance}>
-                ₹56,780.20
-              </Text>
-            </View>
-          </View>
-        </ScrollView>
+      <TouchableOpacity style={styles.cardMenu}>
+        <Ionicons
+          name="ellipsis-horizontal"
+          size={18}
+          color="#5D675A"
+        />
+      </TouchableOpacity>
+    </View>
 
+    <View style={styles.balanceSection}>
+      <Text style={styles.balanceLabel}>
+        Available Balance
+      </Text>
+
+      <Text style={styles.balance}>
+        ₹56,780.20
+      </Text>
+    </View>
+
+    <View style={styles.cardFooter}>
+      <View>
+          <Text style={styles.footerLabel}>Account Type</Text>
+              <Text style={styles.footerValue}>Savings Account</Text>
+                </View>
+
+                 <View style={styles.activeBadge}>
+                     <View style={styles.activeDot} />
+                       <Text style={styles.activeText}>Active</Text>
+                       </View>
+                 </View>
+
+                   </ImageBackground>
+                
+                </ScrollView>
         <TouchableOpacity style={styles.scanPay}>
+          
           <View style={styles.qrContainer}>
             <Ionicons  name="qr-code-outline"  size={27}  color="#31512F"/>
           </View>
@@ -310,7 +361,7 @@ const Service = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F5F7F3",
+    backgroundColor: "#f4f9f5",
   },
 
   scrollContent: {
@@ -318,7 +369,7 @@ const styles = StyleSheet.create({
   },
 
   greetingSection: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 26,
     paddingTop: 14,
     paddingBottom: 16,
     flexDirection: "row",
@@ -328,33 +379,31 @@ const styles = StyleSheet.create({
 
   smallGreeting: {
     fontSize: 13,
-    color: "#7A8177",
+    color: "#202820",
     marginBottom: 3,
-    fontWeight: "500",
-    fontFamily: 'Roboto Slab',
+    fontFamily: 'SoraRegular',
   },
 
   userName: {
     fontSize: 27,
     color: "#202820",
-    fontWeight: "700",
     letterSpacing: -0.1,
-    fontFamily: 'Roboto Slab',
+    fontFamily: 'SoraBold',
   },
 
 searchContainer: {
     marginHorizontal: 20,
     height: 50,
     backgroundColor: "#FFFFFF",
-    borderRadius: 15,
+    borderRadius: 30,
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 15,
     borderWidth: 1,
     borderColor: "#E8ECE6",
     shadowColor: "#000",
-    shadowOpacity: 0.04,
-    shadowRadius: 8,
+    shadowOpacity: 0.07,
+    shadowRadius: 12,
     shadowOffset: {
       width: 0,
       height: 3,
@@ -369,7 +418,7 @@ searchContainer: {
     fontSize: 14,
     color: "#222",
     paddingVertical: 0,
-    fontFamily: 'Roboto'
+    fontFamily: 'DMSanRegular',
   },
 
   scanIcon: {
@@ -382,10 +431,10 @@ searchContainer: {
   },
 
   sectionHeader: {
-    marginHorizontal: 20,
+    marginHorizontal: 26,
     marginTop: 25,
     marginBottom: 13,
-
+    
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -393,121 +442,223 @@ searchContainer: {
 
   sectionTitle: {
     fontSize: 17,
-    fontWeight: "700",
-    color: "#252D24",
-    fontFamily: 'Roboto Slab',
+    color: "#070808",
+    fontFamily: 'SoraSemibold',
   },
 
   sectionSubtitle: {
     fontSize: 11,
-    color: "#8B9289",
+    color: "#000100",
     marginTop: 3,
-    fontFamily: 'Roboto Slab',
+    fontFamily: 'DMSanRegular',
   },
 
   viewAll: {
-    fontSize: 13,
+    fontSize: 12,
     color: "#4A7046",
-    fontWeight: "600",
-    fontFamily: 'Roboto Slab'
+    fontFamily: 'SoraRegular',
   },
 
   accountsContainer: {
-    paddingLeft: 30,
-    paddingRight: 15,
+  paddingLeft: 20,
+  paddingRight: 20,
+  paddingVertical: 9,
+},
+
+accountCard: {
+  width: width * 0.89,
+  height: 230,
+  backgroundColor: "#FFFFFF",
+  borderRadius: 22,
+  padding: 23,
+  marginRight: 17,
+  overflow: "hidden",
+  borderWidth: 1,
+  borderColor: "#d3e2d3",
+  shadowColor: "#000",
+  shadowOffset: {
+    width: 0,
+    height: 5,
+  },
+  shadowOpacity: 0.07,
+  shadowRadius: 12,
+  elevation: 3,
+},
+accountCard2:{
+  width: width * 0.89,
+  height: 230,
+  backgroundColor: "#FFFFFF",
+  borderRadius: 22,
+  padding: 23,
+  marginLeft: 8,
+  overflow: "hidden",
+  borderWidth: 1,
+  borderColor: "#d3e2d3",
+  shadowColor: "#000",
+  shadowOffset: {
+    width: 0,
+    height: 5,
+  },
+  shadowOpacity: 0.07,
+  shadowRadius: 12,
+  elevation: 3,
+
+},
+
+ accountCardImage: {
+    borderRadius: 22,
+    resizeMode: "cover",
+    opacity: 0.5,
+    tintColor: '#3aab93'
   },
 
-  accountCard: {
-    width: width * 0.65,
-    height: 165,
-    backgroundColor: "#fefefe",
-    borderRadius: 20,
-    padding: 25,
-    marginRight: 30,
-    overflow: "hidden",
-    shadowColor: "#243B22",
-    shadowOpacity: 0.18,
-    shadowRadius: 12,
-    shadowOffset: {
-      width: 0,
-      height: 6,
-    },
+accountHeader: {
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "space-between",
+},
 
-    elevation: 5,
-  },
+bankIdentity: {
+  flex: 1,
+  flexDirection: "row",
+  alignItems: "center",
+},
 
-  accountTop: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
+bankLogo: {
+  width: 46,
+  height: 46,
+  justifyContent: "center",
+  alignItems: "center",
+},
 
-  bankLogo: {
-    width: 42,
-    height: 42,
-    borderRadius: 13,
-    justifyContent: "center",
-    alignItems: "center",
-  },
+bankIcon: {
+  width: 45,
+  height: 45,
+  resizeMode: "contain",
+},
 
-  sbiLogo: {
-    backgroundColor: "#E8F0E5",
-  },
+bankInfo: {
+  flex: 1,
+  marginLeft: 12,
+  paddingRight: 8,
+},
 
-  bankIcon:{
-    height: 40,
-    width: 40
+bankName: {
+  fontSize: 16,
+  color: "#202820",
+  fontFamily: "DMSanSemibold",
+},
 
-  },
+accountNumber: {
+  fontSize: 11,
+  color: "#7B8479",
+  marginTop: 4,
+  fontFamily: "DMSanRegular",
+},
 
-  bankInfo: {
-    flex: 1,
-    marginLeft: 12,
-  },
+cardMenu: {
+  width: 34,
+  height: 34,
 
-  bankName: {
-    fontSize: 14,
-    fontWeight: "700",
-    color: "#366f50",
-    fontFamily: 'Roboto Slab'
-  },
+  borderRadius: 11,
 
-  accountNumber: {
-    fontSize: 11,
-    color: "#366f50",
-    marginTop: 4,
-    fontFamily: 'Roboto Slab'
-  },
+  backgroundColor: "#F5F7F3",
 
-  balanceSection: {
-    marginTop: 20,
-  },
+  justifyContent: "center",
+  alignItems: "center",
+},
 
-  balanceLabel: {
-    fontSize: 10,
-    color: "#366f50",
-    marginBottom: 3,
-    fontFamily: 'Roboto Slab'
-  },
+balanceSection: {
+  marginTop: 20,
+  marginLeft: 7
+},
 
-  balance: {
-    fontSize: 24,
-    fontWeight: "700",
-    color: "#366f50",
-    letterSpacing: -0.4,
-    fontFamily: 'Roboto Slab'
-  },
+balanceLabel: {
+  fontSize: 11,
+  color: "#7A8478",
+  fontFamily: "DMSanRegular",
+  marginBottom: 4,
+},
+
+balance: {
+  fontSize: 26,
+  color: "#315C3A",
+  letterSpacing: -0.5,
+  fontFamily: "ManropeExtraBold",
+},
+
+cardFooter: {
+  flexDirection: "row",
+  alignItems: "flex-end",
+  justifyContent: "space-between",
+  marginLeft: 10,
+  marginTop: 13,
+  paddingTop: 11,
+  borderTopWidth: 1,
+  borderTopColor: "#EDF1EB",
+},
+
+footerLabel: {
+  fontSize: 9,
+  color: "#050505",
+  fontFamily: "DMSanRegular",
+},
+
+footerValue: {
+  fontSize: 10,
+  color: "#4E574C",
+  marginTop: 2,
+  fontFamily: "DMSanSemibold",
+},
+
+activeBadge: {
+  flexDirection: "row",
+  alignItems: "center",
+
+  paddingHorizontal: 9,
+  paddingVertical: 5,
+
+  borderRadius: 20,
+
+  backgroundColor: "#EEF6EC",
+},
+
+activeDot: {
+  width: 6,
+  height: 6,
+  borderRadius: 3,
+
+  backgroundColor: "#4D8A52",
+
+  marginRight: 5,
+},
+
+activeText: {
+  fontSize: 9,
+  color: "#4D754C",
+  fontFamily: "DMSanMedium",
+},
 
   scanPay: {
     marginHorizontal: 20,
     marginTop: 20,
     minHeight: 82,
-    backgroundColor: "#4c6342",
+    backgroundColor: "#205648",
     borderRadius: 19,
     paddingHorizontal: 15,
     flexDirection: "row",
     alignItems: "center",
     borderWidth: 1,
     borderColor: "#D0DFCA",
+    shadowColor: "#000",
+    shadowOpacity: 0.4,
+    shadowRadius: 8,
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+
+    elevation: 1,
   },
 
   qrContainer: {
@@ -526,17 +677,15 @@ searchContainer: {
 
   scanTitle: {
     fontSize: 16,
-    fontWeight: "700",
-    color: "#daead3",
-    fontFamily: 'Roboto Slab'
+    color: "#eef2ec",
+    fontFamily: 'SoraBold',
   },
 
   scanSubtitle: {
     fontSize: 11,
     color: "#daead3",
-    fontFamily: 'Roboto Slab',
+    fontFamily: 'DMSanRegular',
     marginTop: 4,
-
     lineHeight: 16,
   },
 
@@ -544,7 +693,7 @@ searchContainer: {
     width: 38,
     height: 38,
     borderRadius: 19,
-    backgroundColor: "#6c8163",
+    backgroundColor: "#3d7663",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -595,10 +744,9 @@ searchContainer: {
 
   quickActionText: {
     fontSize: 9,
-    color: "#3A4038",
-    fontFamily: 'Roboto Slab',
+    color: "#0c0e0b",
+    fontFamily: 'DMSanMedium',
     marginTop: 8,
-    fontWeight: "400",
     textAlign: "center",
     paddingHorizontal: 2,
   },
@@ -636,16 +784,16 @@ searchContainer: {
 
   serviceText: {
     fontSize: 10,
-    fontWeight: "700",
     color: "#30362E",
     marginTop: 9,
-    fontFamily: 'Roboto Slab',
+    fontFamily: 'DMSanSemibold',
     textAlign: "center",
   },
 
   serviceSub: {
     fontSize: 9,
     color: "#929890",
+    fontFamily: 'DMSanRegular',
     marginTop: 4,
     textAlign: "center",
   },

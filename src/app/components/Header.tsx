@@ -9,13 +9,13 @@ export default function Header() {
     <View style={styles.header}>
 
     <View style={styles.contanier}>
-          {/* <View style={styles.logoBox}>
-            <Image source={require('@/assets/images/touchpe_i.png')} style={styles.imagebox} />
-        </View> */}
+          <View style={styles.logoBox}>
+            <Image source={require('@/assets/images/comp_logo.png')} style={styles.imagebox} />
+        </View>
         <Text style={styles.logo}>
         S A D A I V
       </Text>
-      <Text style={{ fontSize: 15, fontFamily: 'Roboto Slab',}}>Finance</Text>
+      <Text style={{ fontSize: 10, fontFamily: 'SoraRegular',marginTop: 14,marginLeft: -7}}>Finance</Text>
       
     </View>
 
@@ -36,7 +36,7 @@ export default function Header() {
         <TouchableOpacity style={styles.notification} onPress={() => console.log("Notification clicked")}>
           <Ionicons
             name="notifications-outline"
-            size={25}
+            size={23}
             color="#222"
           />
 
@@ -49,8 +49,8 @@ export default function Header() {
         <TouchableOpacity style={styles.profile} onPress={() => console.log("Profile clicked")}>
           <Ionicons
             name="person-outline"
-            size={15}
-            color="white"
+            size={25}
+            color="#222"
           />
         </TouchableOpacity>
 
@@ -66,12 +66,13 @@ export default function Header() {
 const styles = StyleSheet.create({
   safeArea:{
      backgroundColor: "#F5F7F3",
+     marginBottom: 17
 
   },
   header: {
     height: 50,
     marginTop: 15,
-    paddingHorizontal: 20,
+    paddingHorizontal: 25,
 
     flexDirection: "row",
     alignItems: "center",
@@ -86,24 +87,22 @@ const styles = StyleSheet.create({
     logoBox : {
     width: 35,
     height: 35,
-    borderRadius: 20,
-    backgroundColor: "#4b7148",
     justifyContent: "center",
     alignItems: "center",
     
     },
     imagebox:{
-    width: 30,
-    height: 30,
+    width: 70,
+    height: 70,
     resizeMode: "contain",
     borderRadius: 20
 
     },
   logo: {
-    fontSize: 25,
-    fontWeight: "bold",
-    paddingHorizontal: 5,
-    fontFamily: 'Roboto Slab',
+    fontSize: 20,
+    paddingHorizontal: 10,
+    marginTop: 10,
+    fontFamily: 'SoraBold',
   },
 
   rightSection: {
@@ -143,9 +142,6 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 19,
-
-    backgroundColor: "#333",
-
     justifyContent: "center",
     alignItems: "center",
   },

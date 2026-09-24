@@ -1,7 +1,6 @@
 import React from "react";
 import { Tabs } from "expo-router";
 import { View, StyleSheet } from "react-native";
-
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { FontAwesome6 } from "@react-native-vector-icons/fontawesome6";
@@ -19,7 +18,7 @@ export default function TabRoot() {
             </View> ), }}/>
 
       <Tabs.Screen name="Wealth"
-       options={{title: "Wealth", tabBarIcon: ({ color, focused }) => (
+       options={{title: "Loan", tabBarIcon: ({ color, focused }) => (
             <View style={[ styles.iconContainer, focused && styles.activeIconContainer, ]}>
             <AntDesign name="stock" size={21} color={color} />
             </View>), }} />
@@ -69,7 +68,8 @@ const styles = StyleSheet.create({
 
   tabLabel: {
     fontSize: 10,
-    fontWeight: "600",
+    fontFamily: 'NunitoBold',
+    color: "#020303",
     marginTop: 2,
     textTransform: "none",
   },
