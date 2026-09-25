@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import {View,Text,TextInput,TouchableOpacity,StyleSheet,ScrollView,Image} from "react-native";
+import {View,Text,TextInput,TouchableOpacity,StyleSheet,ScrollView,Image,ImageBackground} from "react-native";
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { router } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function signup() {
 
@@ -16,11 +17,12 @@ export default function signup() {
   const [showConfirm, setShowConfirm] = useState(false);
 
   return (
-    <View style={styles.safeArea}>
-      <Image  source={require('@/assets/images/wave2.png')}  style={styles.topWave}  resizeMode="stretch" tintColor={'#88ceab'}  />
-      <Image source={require('@/assets/images/wave3.png')} style={styles.bottomWave} resizeMode="stretch" tintColor={'#88ceab'} />
+    <SafeAreaView style={styles.safeArea}>
+      {/* <Image  source={require('@/assets/images/wave2.png')}  style={styles.topWave}  resizeMode="stretch" tintColor={'#88ceab'}  />
+      <Image source={require('@/assets/images/wave3.png')} style={styles.bottomWave} resizeMode="stretch" tintColor={'#88ceab'} /> */}
+      <ImageBackground source={require('@/assets/images/signup-bg.png')} resizeMode="cover" style={styles.backgroundimg}>
       <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
-        <TouchableOpacity style={styles.backButton}onPress={() => router.back()}>
+        <TouchableOpacity style={styles.backButton}>
           <Text style={styles.backText}>
             ‹
           </Text>
@@ -198,8 +200,9 @@ export default function signup() {
         </View>
 
       </ScrollView>
+      </ImageBackground>
 
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -210,25 +213,25 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#f5faf7",
   },
-  topWave: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 120, 
-    width: '100%',
-    zIndex: 0,
-    opacity:0.4
-  },
-  bottomWave: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 120,
-    width: '100%',
-    zIndex: 0,
-  },
+  // topWave: {
+  //   position: 'absolute',
+  //   top: 0,
+  //   left: 0,
+  //   right: 0,
+  //   height: 120, 
+  //   width: '100%',
+  //   zIndex: 0,
+  //   opacity:0.4
+  // },
+  // bottomWave: {
+  //   position: 'absolute',
+  //   bottom: 0,
+  //   left: 0,
+  //   right: 0,
+  //   height: 120,
+  //   width: '100%',
+  //   zIndex: 0,
+  // },
 
   container: {
     flexGrow: 1,
@@ -248,12 +251,14 @@ const styles = StyleSheet.create({
     fontSize: 29,
     color: "#344139",
     lineHeight: 30,
+    fontFamily: "SoraRegular",
   },
 
   backLabel: {
     fontSize: 12,
     color: "#667069",
     marginLeft: 4,
+    fontFamily: "SoraRegular",
   },
 
   logoContainer: {
@@ -279,26 +284,32 @@ const styles = StyleSheet.create({
     fontSize: 23,
     fontWeight: "700",
     color: "#263129",
+    fontFamily: "SoraBold",
   },
 
   logoGreen: {
     color: "#3E6B4A",
+    fontFamily: "SoraRegular",
+
   },
 
   headingContainer: {
     marginBottom: 18,
+    marginLeft: 5
   },
 
   title: {
     fontSize: 25,
     fontWeight: "700",
     color: "#17221B",
+    fontFamily: "SoraBold",
   },
 
   subtitle: {
     fontSize: 12,
     color: "#7A837D",
     marginTop: 5,
+    fontFamily: "DMSanRegular",
   },
 
   card: {
@@ -322,6 +333,8 @@ const styles = StyleSheet.create({
     color: "#344139",
     marginBottom: 7,
     marginTop: 12,
+    fontFamily: "DMSanRegular",
+
   },
 
   inputContainer: {
@@ -362,6 +375,7 @@ const styles = StyleSheet.create({
     height: "100%",
     fontSize: 12,
     color: "#17221B",
+     fontFamily: "DMSanRegular",
   },
 
   showText: {
@@ -416,8 +430,9 @@ const styles = StyleSheet.create({
 
   signupButtonText: {
     color: "#FFFFFF",
-    fontSize: 13,
+    fontSize: 15,
     fontWeight: "700",
+    fontFamily: 'SoraBold'
   },
 
   buttonArrow: {
@@ -435,7 +450,9 @@ const styles = StyleSheet.create({
 
   accountText: {
     fontSize: 11,
-    color: "#737D76",
+    color: "#060606",
+    fontFamily: "DMSanRegular",
+
   },
 
   loginText: {
@@ -467,7 +484,14 @@ const styles = StyleSheet.create({
 
   securityText: {
     fontSize: 9,
-    color: "#8A938D",
+    color: "#070807",
+    fontFamily: "DMSanRegular",
+
   },
+  backgroundimg:{
+    flex:1,
+    width: '100%',
+    height: '100%'
+  }
 
 });

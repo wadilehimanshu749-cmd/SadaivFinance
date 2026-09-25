@@ -5,7 +5,7 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { FontAwesome6 } from "@react-native-vector-icons/fontawesome6";
 
-const GREEN = "#485d3d";
+const GREEN = "#04433b";
 const LIGHT_GREEN = "#EAF1E7";
 
 export default function TabRoot() {
