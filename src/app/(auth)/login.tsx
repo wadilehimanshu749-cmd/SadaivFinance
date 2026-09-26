@@ -1,15 +1,19 @@
-import { View, Text, Image,StyleSheet, TouchableOpacity,ScrollView, TextInput} from 'react-native'
+import { View, Text, Image,StyleSheet, TouchableOpacity,ScrollView, TextInput,ImageBackground} from 'react-native'
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { SafeAreaView } from "react-native-safe-area-context";
 import { faApple, faGoogle, faMicrosoft } from '@fortawesome/free-brands-svg-icons';
 import React from 'react'
 
 export default function login() {
+  
   return (
-    <View style={styles.safecontainer}>
+    <SafeAreaView style={styles.safecontainer}>
       
-      <Image  source={require('@/assets/images/wave2.png')}  style={styles.topWave}  resizeMode="stretch" tintColor={'#88ceab'}  />
-      <Image source={require('@/assets/images/wave3.png')} style={styles.bottomWave} resizeMode="stretch" tintColor={'#88ceab'} />
+      {/* <Image  source={require('@/assets/images/wave2.png')}  style={styles.topWave}  resizeMode="stretch" tintColor={'#88ceab'}  />
+      <Image source={require('@/assets/images/wave3.png')} style={styles.bottomWave} resizeMode="stretch" tintColor={'#88ceab'} /> */}
+      <ImageBackground source={require('@/assets/images/signup-bg.png')} resizeMode="cover" style={styles.backgroundimg}>
+      
       <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
 
       <View style={styles.logoContainer}>
@@ -32,8 +36,8 @@ export default function login() {
                </Text>
      
                <Text style={styles.subtitle}>
-                 Login to your account and continue {'\n'}
-                 your financial journey.
+                 Login to your account and continue your {'\n'}
+                 financial journey.
                </Text>
      
              </View>
@@ -56,7 +60,7 @@ export default function login() {
 
           <View style={styles.inputContainer}>
           <View style={{marginRight:9}}>
-              <FontAwesome size={22} name="lock" color="#78aa8e" />
+              <FontAwesome size={23} name="lock" color="#78aa8e" />
             </View>
             <View style={styles.verticalLine} />
 
@@ -67,13 +71,10 @@ export default function login() {
 
           </View>
 
-          <TouchableOpacity style={{alignItems: 'flex-end', marginTop: -10}}>
-              <Text>Forgot Password ?</Text>
+          <TouchableOpacity style={{alignItems: 'flex-end', marginTop: -10,}}>
+              <Text style={{fontFamily: "SoraRegular",fontSize:10}}>Forgot Password ?</Text>
 
           </TouchableOpacity>
-          
-
-          </View>
 
           <TouchableOpacity style={styles.signinButton} activeOpacity={0.8}>
           
@@ -83,10 +84,15 @@ export default function login() {
           
            </TouchableOpacity>
           
+
+          </View>
+
+          
+          
           <View style={{flexDirection: 'row', marginTop:15, marginBottom:15 , alignItems: 'center'}}>
             <View style={styles.horizontalline} />
             <View style={{marginHorizontal: 10}}>
-            <Text>Or continue with</Text>
+            <Text style={{fontFamily: "DMSanRegular",fontSize:12}}>Or continue with</Text>
             </View>
              <View style={styles.horizontalline} />
 
@@ -97,30 +103,31 @@ export default function login() {
             <View style={styles.card2}>
 
              <FontAwesomeIcon icon={faGoogle} size={20} color="#EA4335" />
-             <Text style={{marginLeft:10}}>Continue with Google</Text>
+             <Text style={{marginLeft:10,fontFamily: "DMSanMedium",color: '#263129'}}>Continue with Google</Text>
             </View>
             <View style={styles.card2}>
 
              <FontAwesomeIcon icon={faApple} size={20} color="#080808" />
-             <Text style={{marginLeft:10}}>Continue with Apple</Text>
+             <Text style={{marginLeft:10,fontFamily: "DMSanMedium",color: '#263129'}}>Continue with Apple</Text>
             </View>
             <View style={styles.card2}>
 
              <FontAwesomeIcon icon={faMicrosoft} size={20} color="#080808" />
-             <Text style={{marginLeft:10}}>Continue with Microsoft</Text>
+             <Text style={{marginLeft:10,fontFamily: "DMSanMedium",color:'#263129'}}>Continue with Microsoft</Text>
             </View>
 
           </View>
 
           <View style={styles.account}>
-            <Text style={{fontSize: 12}}>Dont't have an account ?</Text>
+            <Text style={{fontSize: 12,fontFamily: "DMSanRegular",}}>Dont't have an account ?</Text>
           <TouchableOpacity style={{marginHorizontal:10}}>
-            <Text>Sign up</Text>
+            <Text style={{fontFamily: "SoraBold",fontSize:11,color: '#3E6B4A'}}>Sign up</Text>
           </TouchableOpacity>
           </View>
              </ScrollView>
+             </ImageBackground>
    
-    </View>
+    </SafeAreaView>
   )
 }
 
@@ -133,30 +140,30 @@ backgroundColor: '#f5faf7'
 container:{
     flexGrow: 1,
     paddingHorizontal: 25,
-    paddingTop: 70,
+    paddingTop: 45,
     paddingBottom: 25,
 },
 
-topWave:{
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  right: 0,
-  height: 120, 
-  width: '100%',
-  zIndex: 0,
-  opacity:0.4
-},
-bottomWave:{
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 120,
-    width: '100%',
-    zIndex: 0,
-    opacity: 0.4
-},
+// topWave:{
+//   position: 'absolute',
+//   top: 0,
+//   left: 0,
+//   right: 0,
+//   height: 120, 
+//   width: '100%',
+//   zIndex: 0,
+//   opacity:0.4
+// },
+// bottomWave:{
+//     position: 'absolute',
+//     bottom: 0,
+//     left: 0,
+//     right: 0,
+//     height: 120,
+//     width: '100%',
+//     zIndex: 0,
+//     opacity: 0.4
+// },
 logoContainer: {
     alignItems: "center",
     marginBottom: 24,
@@ -178,33 +185,36 @@ logoCircle: {
 
   logoText: {
     fontSize: 23,
-    fontWeight: "700",
     color: "#263129",
+    fontFamily: "SoraBold",
   },
 
   logoGreen: {
     color: "#3E6B4A",
+    fontFamily: "SoraRegular",
   },
 
   headingContainer: {
-    marginBottom: 18,
     paddingHorizontal:10
   },
 
   title: {
     fontSize: 25,
-    fontWeight: "700",
     color: "#17221B",
+    fontFamily: "SoraBold",
   },
    subtitle: {
     fontSize: 12,
     color: "#7A837D",
     marginTop: 5,
+    fontFamily: "DMSanRegular",
   },
     card: {
     borderRadius: 20,
     padding: 20,
     backgroundColor: '#ebf6ef',
+    borderWidth: 1,
+    borderColor: '#e4f4e4',
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -263,6 +273,7 @@ logoCircle: {
     height: "100%",
     fontSize: 12,
     color: "#17221B",
+    fontFamily: "DMSanRegular",
   },
   logincard:{
     alignItems: 'center',
@@ -270,8 +281,8 @@ logoCircle: {
 
   },
   loginicon:{
-    width: 250,
-    height: 250,
+    width: 300,
+    height: 300,
     resizeMode: 'contain'
     
   },
@@ -287,8 +298,8 @@ logoCircle: {
 
   signinButtonText: {
     color: "#FFFFFF",
-    fontSize: 15,
-    fontWeight: "700",
+    fontSize: 17,
+     fontFamily: "SoraBold",
   },
   horizontalline:{
     flex: 1,
@@ -321,6 +332,11 @@ logoCircle: {
     alignItems: 'center',
     justifyContent: 'center'
 
+  },
+  backgroundimg:{
+    flex:1,
+    width: '100%',
+    height: '100%'
   }
 
 })

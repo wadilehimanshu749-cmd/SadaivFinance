@@ -17,7 +17,7 @@ export default function TabRoot() {
               <FontAwesome name="home" size={21} color={color}/>
             </View> ), }}/>
 
-      <Tabs.Screen name="Wealth"
+      <Tabs.Screen name="Loan"
        options={{title: "Loan", tabBarIcon: ({ color, focused }) => (
             <View style={[ styles.iconContainer, focused && styles.activeIconContainer, ]}>
             <AntDesign name="stock" size={21} color={color} />

@@ -34,11 +34,11 @@ export default function _layout() {
   }
   return (
     <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false, }}/>
+        <Stack.Screen name="index" options={{headerShown: false}}/>
 
-      <Stack.Screen name="auth" options={{ headerShown: false,}} />
+      <Stack.Screen name="(auth)" options={{headerShown: false}}/>
 
-      <Stack.Screen name="(tabs)" options={{ headerShown: false, }}/>
+      <Stack.Screen name="(tabs)" options={{headerShown: false}}/>
 
       <Stack.Screen name='self_transfer' options={{title:'Self Transfer',headerTitleAlign: 'center'}}  />
       <Stack.Screen name='utility_bills' options={{title:'Utility Bills',headerTitleAlign: 'center'}}  />

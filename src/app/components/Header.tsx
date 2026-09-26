@@ -48,7 +48,7 @@ export default function Header({ scrollY }: HeaderProps) {
               <View style={styles.logoBox}>
                 <Image
                   source={require("@/assets/images/comp_logo.png")}
-                  style={[styles.imagebox, { tintColor: "#1A5235" }]}
+                  style={[styles.imagebox,]}
                 />
               </View>
               <Animated.Text style={[styles.logo, { color: "#070808" }]}>

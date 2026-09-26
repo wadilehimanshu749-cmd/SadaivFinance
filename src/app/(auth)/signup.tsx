@@ -3,6 +3,7 @@ import {View,Text,TextInput,TouchableOpacity,StyleSheet,ScrollView,Image,ImageBa
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { router } from "expo-router";
+import { BlurView } from 'expo-blur';
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function signup() {
@@ -58,6 +59,7 @@ export default function signup() {
         </View>
 
         <View style={styles.card}>
+          
 
           <Text style={styles.label}>
             Full Name
@@ -161,10 +163,6 @@ export default function signup() {
               Create Account
             </Text>
 
-            <Text style={styles.buttonArrow}>
-              →
-            </Text>
-
           </TouchableOpacity>
 
         </View>
@@ -175,9 +173,7 @@ export default function signup() {
             Already have an account?
           </Text>
 
-          <TouchableOpacity
-            onPress={() => router.push("/auth/login")}
-          >
+          <TouchableOpacity>
 
             <Text style={styles.loginText}>
               Login
@@ -251,14 +247,14 @@ const styles = StyleSheet.create({
     fontSize: 29,
     color: "#344139",
     lineHeight: 30,
-    fontFamily: "SoraRegular",
+    fontFamily: "DMSanMedium",
   },
 
   backLabel: {
     fontSize: 12,
     color: "#667069",
     marginLeft: 4,
-    fontFamily: "SoraRegular",
+    fontFamily: "DMSanMedium",
   },
 
   logoContainer: {
@@ -282,7 +278,6 @@ const styles = StyleSheet.create({
 
   logoText: {
     fontSize: 23,
-    fontWeight: "700",
     color: "#263129",
     fontFamily: "SoraBold",
   },
@@ -300,7 +295,6 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: 25,
-    fontWeight: "700",
     color: "#17221B",
     fontFamily: "SoraBold",
   },
@@ -315,7 +309,10 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 20,
     padding: 20,
-    backgroundColor: '#ebf6ef',
+    backgroundColor: "#ecf8f1",
+    opacity: 0.9,
+    borderColor: "#e3f1e9",
+    overflow: "hidden",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -329,11 +326,10 @@ const styles = StyleSheet.create({
 
   label: {
     fontSize: 11,
-    fontWeight: "600",
     color: "#344139",
     marginBottom: 7,
     marginTop: 12,
-    fontFamily: "DMSanRegular",
+    fontFamily: "DMSanMedium",
 
   },
 
@@ -359,8 +355,8 @@ const styles = StyleSheet.create({
 
   countryCode: {
     fontSize: 12,
-    fontWeight: "600",
     color: "#39433D",
+    fontFamily: 'DMSanSemibold'
   },
 
   verticalLine: {
@@ -381,7 +377,7 @@ const styles = StyleSheet.create({
   showText: {
     color: "#3E6B4A",
     fontSize: 10,
-    fontWeight: "700",
+    fontFamily: 'SoraRegular'
   },
 
   termsContainer: {
@@ -411,11 +407,12 @@ const styles = StyleSheet.create({
     fontSize: 9,
     lineHeight: 15,
     color: "#737D76",
+    fontFamily: 'DMSanRegular'
   },
 
   termsGreen: {
     color: "#3E6B4A",
-    fontWeight: "600",
+    fontFamily: 'DMSanRegular'
   },
 
   signupButton: {
@@ -431,8 +428,7 @@ const styles = StyleSheet.create({
   signupButtonText: {
     color: "#FFFFFF",
     fontSize: 15,
-    fontWeight: "700",
-    fontFamily: 'SoraBold'
+    fontFamily: 'DMSanSemibold'
   },
 
   buttonArrow: {
@@ -449,7 +445,7 @@ const styles = StyleSheet.create({
   },
 
   accountText: {
-    fontSize: 11,
+    fontSize: 10,
     color: "#060606",
     fontFamily: "DMSanRegular",
 
@@ -458,8 +454,8 @@ const styles = StyleSheet.create({
   loginText: {
     fontSize: 11,
     color: "#3E6B4A",
-    fontWeight: "700",
     marginLeft: 5,
+    fontFamily: 'DMSanSemibold'
   },
 
   securityContainer: {
