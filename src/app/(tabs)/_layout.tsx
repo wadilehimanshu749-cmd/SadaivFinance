@@ -29,8 +29,8 @@ export default function TabRoot() {
               <AntDesign name="scan" size={25} color="#FFFFFF" />
             </View>),}}/>
 
-      <Tabs.Screen name="Bills"
-        options={{ title: "Bills",tabBarIcon: ({ color, focused }) => (
+      <Tabs.Screen name="Investment"
+        options={{ title: "Investment",tabBarIcon: ({ color, focused }) => (
             <View style={[styles.iconContainer, focused && styles.activeIconContainer, ]}>
               <FontAwesome6 name="money-bills" iconStyle="solid" size={21} color={color} />
             </View>),}} />

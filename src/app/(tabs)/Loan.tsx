@@ -112,6 +112,175 @@ export default function PersonalLoan() {
 
           </View>
 
+          <View style={styles.actionrow}>
+           <TouchableOpacity style={styles.primaryaction}>
+            <Ionicons
+              name="document-text-outline"
+              size={20}
+              color="#cfeade"
+            />
+
+            <Text style={styles.actiontxt}>
+              View Statement
+            </Text>
+
+           </TouchableOpacity >
+
+           <TouchableOpacity style={styles.secondaryaction}>
+            <Ionicons
+              name="calendar-outline"
+              size={20}
+              color="#cfeade"
+            />
+
+            <Text style={styles.actiontxt}>
+              Make Payment
+            </Text>
+
+           </TouchableOpacity>
+          </View>
+          <View style={styles.detailsCard}>
+
+            <Text style={styles.sectionTitle}>
+              Loan Details
+            </Text>
+
+
+            <View style={styles.detailRow}>
+
+              <Text style={styles.detailLabel}>
+                Loan Amount
+              </Text>
+
+              <Text style={styles.detailValue}>
+                ₹5,00,000
+              </Text>
+
+            </View>
+
+
+            <View style={styles.detailDivider} />
+
+
+            <View style={styles.detailRow}>
+
+              <Text style={styles.detailLabel}>
+                Interest Rate
+              </Text>
+
+              <Text style={styles.detailValue}>
+                10.5% p.a.
+              </Text>
+
+            </View>
+
+
+            <View style={styles.detailDivider} />
+
+
+            <View style={styles.detailRow}>
+
+              <Text style={styles.detailLabel}>
+                EMI Amount
+              </Text>
+
+              <Text style={styles.detailValue}>
+                ₹8,732
+              </Text>
+
+            </View>
+
+
+            <View style={styles.detailDivider} />
+
+
+            <View style={styles.detailRow}>
+
+              <Text style={styles.detailLabel}>
+                Loan Start Date
+              </Text>
+
+              <Text style={styles.detailValue}>
+                25 May 2023
+              </Text>
+
+            </View>
+
+          </View>
+
+          <View style={styles.benefitsection}>
+
+            <Text>Why Choose Our Personal Loan ?</Text>
+
+            <View style={styles.benefitrow}>
+
+              <View style={styles.benefititem}>
+                <View style={styles.benefiticon}>
+                   <Ionicons
+                      name="flash"
+                     size={20}
+                     color="#2b6446"/>
+
+                </View>
+
+            <Text style={styles.benefittxt}>
+             {'Quick\nApproval'}
+              
+            </Text>
+
+              </View>
+
+              <View style={styles.benefititem}>
+
+                <View style={styles.benefiticon}>
+              <Ionicons
+              name="shield-checkmark"
+              size={20}
+              color="#2b6446" />
+              </View>
+            
+            <Text style={styles.benefittxt}>
+             {'100% Secure\n& Trusted'}
+              
+            </Text>
+
+              </View>
+              <View style={styles.benefititem}>
+                <View style={styles.benefiticon}>
+                   <Ionicons
+                      name="document-text-outline"
+                     size={20}
+                     color="#2b6446"/>
+
+                </View>
+
+            <Text style={styles.benefittxt}>
+             {'Minimal\nDocumentation'}
+              
+            </Text>
+
+              </View>
+
+              <View style={styles.benefititem}>
+                <View style={styles.benefiticon}>
+                   <Ionicons
+                      name="pricetag-outline"
+                     size={20}
+                     color="#2b6446"/>
+
+                </View>
+
+            <Text style={styles.benefittxt}>
+             {'Competative\nInterest Rates'}
+              
+            </Text>
+
+              </View>
+              
+
+            </View>
+          </View>
+
 
         </ScrollView>
 
@@ -126,11 +295,13 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: "#f1faf2",
+  
   },
 
   mainContainer: {
     flex: 1,
     backgroundColor: "#f1faf2",
+    marginBottom: 70
   },
 
   scrollContent: {
@@ -280,6 +451,113 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "600",
   },
+  actionrow:{
+    flexDirection: 'row',
+    gap: 10,
+    marginTop: 15
+    
+  },
+  primaryaction:{
+    flex: 1,
+    height: 45,
+    backgroundColor: "#286047",
+    borderRadius: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+
+  },
+  secondaryaction:{
+    flex: 1,
+    height: 45,
+    backgroundColor: "#286047",
+    borderRadius: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+
+  },
+actiontxt:{
+  marginLeft:5,
+  color: '#FFFFFF'
+},
+detailsCard: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 19,
+    padding: 20,
+    marginTop: 16,
+    borderWidth: 1,
+    borderColor: "#E9ECE9",
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.04,
+    shadowRadius: 5,
+
+    elevation: 1,
+  },
+
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: "700",
+    color: "#163A31",
+    marginBottom: 12,
+  },
+
+  detailRow: {
+    minHeight: 48,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+
+  detailLabel: {
+    fontSize: 13,
+    color: "#61736A",
+  },
+
+  detailValue: {
+    fontSize: 14,
+    color: "#18382F",
+    fontWeight: "600",
+  },
+
+  detailDivider: {
+    height: 1,
+    backgroundColor: "#EDF0ED",
+  },
+benefitsection:{
+  padding: 15
+},
+benefitrow:{
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  marginTop:10
+
+},
+benefititem:{
+  width: "24%",
+  alignItems: 'center'
+
+},
+benefiticon:{
+  backgroundColor: '#dcebde',
+  borderRadius: 25,
+  width: 45,
+  height: 45,
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginBottom: 5
+  
+},
+benefittxt:{
+  textAlign: 'center',
+  fontSize: 10,
+  lineHeight: 15
+}
 
 
 });
