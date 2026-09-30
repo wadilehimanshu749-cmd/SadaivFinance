@@ -16,7 +16,6 @@ interface InsurancePlan {
   insurerSlug?: string;
   category?: string;
   subCategory?: string;
-
   premiumRange?: {
     illustrativeMin?: number;
     illustrativeMax?: number;
@@ -33,12 +32,12 @@ interface InsurancePlan {
   };
 
   specialFeatures?: string[];
-  networkHospitals?: number;
-  renewability?: string;
-  claimSettlement?: any;
-  confidenceScore?: string;
-  lastVerified?: string;
-  sourceUrl?: string;
+  // networkHospitals?: number;
+  // renewability?: string;
+  // claimSettlement?: any;
+  // confidenceScore?: string;
+     lastVerified?: string;
+  // sourceUrl?: string;
 }
 
 const CATEGORY_TABS: {
@@ -69,8 +68,7 @@ const CATEGORY_TABS: {
 
 export default function Investment() {
   const [plans, setPlans] = useState<InsurancePlan[]>([]);
-  const [selectedCategory, setSelectedCategory] =
-    useState<Category>("all");
+  const [selectedCategory, setSelectedCategory] = useState<Category>("all");
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -345,15 +343,15 @@ export default function Investment() {
               <Text style={styles.featureTitle}>
                 Key Features
               </Text>
-
-              {plan.specialFeatures.slice(0, 3).map(
+ 
+              {plan.specialFeatures.slice(0, 5).filter((feature,featureIndex ) => featureIndex !==3 ).map(
                   (
                     feature,
                     featureIndex
                   ) => (
                     <View key={featureIndex} style={  styles.featureRow}>
                       
-
+                        <Ionicons name="checkmark-circle" size={15} color="#287454" />
                       <Text style={ styles.featureText} numberOfLines={2}>
                         {feature}
                       </Text>
@@ -383,22 +381,22 @@ export default function Investment() {
     );
   };
 
-  if (loading) {
-    return (
-      <SafeAreaView style={styles.safeArea}>
-        <View style={styles.loadingContainer}>
-          <ActivityIndicator
-            size="large"
-            color="#287454"
-          />
+  // if (loading) {
+  //   return (
+  //     <SafeAreaView style={styles.safeArea}>
+  //       <View style={styles.loadingContainer}>
+  //         <ActivityIndicator
+  //           size="large"
+  //           color="#287454"
+  //         />
 
-          <Text style={styles.loadingText}>
-            Loading insurance plans...
-          </Text>
-        </View>
-      </SafeAreaView>
-    );
-  }
+  //         <Text style={styles.loadingText}>
+  //           Loading insurance plans...
+  //         </Text>
+  //       </View>
+  //     </SafeAreaView>
+  //   );
+  // }
 
 
   return (
@@ -435,7 +433,7 @@ export default function Investment() {
           </TouchableOpacity>
         </View>
 
-        <ImageBackground source={require("@/assets/images/investment.png")} style={styles.heroCard} imageStyle={styles.heroImage}>
+        <ImageBackground source={require("@/assets/images/heroimage.png")} style={styles.heroCard} imageStyle={styles.heroImage}>
           <View style={styles.heroOverlay}>
             <View style={styles.heroContent}>
               <Text style={styles.heroTitle}>
@@ -456,7 +454,7 @@ export default function Investment() {
                 <Ionicons
                   name="arrow-forward"
                   size={16}
-                  color="#287454"
+                  color="#eaf5f0"
                 />
               </TouchableOpacity>
             </View>
@@ -471,9 +469,7 @@ export default function Investment() {
             contentContainerStyle={ styles.tabsContainer}>
             {CATEGORY_TABS.map(
               (tab) => {
-                const isSelected =
-                  selectedCategory ===
-                  tab.key;
+                const isSelected = selectedCategory === tab.key;
 
                 return (
                   <TouchableOpacity key={tab.key} style={[ styles.categoryTab, isSelected && styles.selectedCategoryTab,]}
@@ -543,9 +539,7 @@ export default function Investment() {
               color="#8AA99A"
             />
 
-            <Text
-              style={styles.emptyTitle}
-            >
+            <Text style={styles.emptyTitle} >
               No plans available
             </Text>
 
@@ -594,13 +588,14 @@ const styles = StyleSheet.create({
 
   headerTitle: {
     fontSize: 22,
-    fontWeight: "700",
+    fontFamily: 'SoraBold',
     color: "#103D43",
   },
 
   headerSubtitle: {
     fontSize: 12,
     color: "#78928A",
+    fontFamily: 'DMSanRegular',
     marginTop: 2,
   },
 
@@ -616,6 +611,11 @@ const styles = StyleSheet.create({
     height: 210,
     borderRadius: 24,
     overflow: "hidden",
+    shadowColor: '#103D43',
+    shadowRadius: 15,
+    shadowOpacity: 0.6,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 4,
   },
 
   heroImage: {
@@ -629,20 +629,21 @@ const styles = StyleSheet.create({
 
   heroContent: {
     paddingHorizontal: 22,
-    width: "72%",
+    width: "80%",
   },
 
   heroTitle: {
-    fontSize: 21,
+    fontSize: 20,
     lineHeight: 27,
-    fontWeight: "800",
+    fontFamily: 'SoraBold',
     color: "#111311",
   },
 
   heroDescription: {
     fontSize: 12,
     lineHeight: 18,
-    color: "#111311",
+    color: "#070807",
+    fontFamily: 'DMSanRegular',
     marginTop: 8,
   },
 
@@ -650,7 +651,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#367051",
     paddingHorizontal: 14,
     paddingVertical: 9,
     borderRadius: 20,
@@ -659,8 +660,8 @@ const styles = StyleSheet.create({
 
   heroButtonText: {
     fontSize: 12,
-    fontWeight: "700",
-    color: "#287454",
+    fontFamily: 'DMSanSemibold',
+    color: "#eaf5f0",
     marginRight: 6,
   },
 
@@ -686,7 +687,7 @@ const styles = StyleSheet.create({
 
   categoryTabText: {
     fontSize: 12,
-    fontWeight: "600",
+    fontFamily: 'DMSanSemibold',
     color: "#55766A",
   },
 
@@ -705,7 +706,7 @@ const styles = StyleSheet.create({
 
   sectionTitle: {
     fontSize: 19,
-    fontWeight: "800",
+    fontFamily: 'SoraBold',
     color: "#103D43",
   },
 
@@ -754,13 +755,13 @@ const styles = StyleSheet.create({
   insurerName: {
     fontSize: 11,
     color: "#78928A",
-    fontWeight: "600",
-  },
+    fontFamily: 'DMSanSemibold'
+    },
 
   planName: {
     fontSize: 15,
     color: "#103D43",
-    fontWeight: "800",
+    fontFamily: 'SoraSemibold',
     marginTop: 3,
   },
 
@@ -774,7 +775,7 @@ const styles = StyleSheet.create({
 
   categoryBadgeText: {
     fontSize: 8,
-    fontWeight: "700",
+    fontFamily: 'DMSanSemibold',
     color: "#287454",
     textAlign: "center",
   },
@@ -784,11 +785,12 @@ const styles = StyleSheet.create({
     color: "#78928A",
     marginTop: 10,
     textTransform: "capitalize",
+    fontFamily: 'DMSanRegular'
   },
 
   detailsContainer: {
     flexDirection: "row",
-    backgroundColor: "#F5FAF7",
+    backgroundColor: "#e2f0e8",
     borderRadius: 13,
     marginTop: 13,
     paddingVertical: 11,
@@ -808,12 +810,13 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: "#78928A",
     marginBottom: 4,
+    fontFamily: 'DMSanRegular'
   },
 
   detailValue: {
     fontSize: 12,
     color: "#103D43",
-    fontWeight: "700",
+    fontFamily: 'DMSanSemibold'
   },
 
   infoRow: {
@@ -826,15 +829,16 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: "#55766A",
     marginLeft: 7,
+    fontFamily: 'DMSanRegular'
   },
 
   featuresContainer: {
-    marginTop: 12,
+    marginTop: 15,
   },
 
   featureTitle: {
     fontSize: 11,
-    fontWeight: "700",
+    fontFamily: 'DMSanSemibold',
     color: "#103D43",
     marginBottom: 5,
   },
@@ -851,6 +855,7 @@ const styles = StyleSheet.create({
     color: "#55766A",
     marginLeft: 6,
     lineHeight: 15,
+    fontFamily: 'DMSanRegular'
   },
 
   cardBottom: {
@@ -864,6 +869,7 @@ const styles = StyleSheet.create({
   verifiedText: {
     fontSize: 9,
     color: "#8AA99A",
+    fontFamily: 'DMSanRegular'
   },
 
   viewButton: {
@@ -877,7 +883,7 @@ const styles = StyleSheet.create({
 
   viewButtonText: {
     fontSize: 10,
-    fontWeight: "700",
+    fontFamily: 'DMSanSemibold',
     color: "#FFFFFF",
     marginRight: 5,
   },
