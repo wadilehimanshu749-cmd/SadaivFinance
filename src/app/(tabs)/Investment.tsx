@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, ImageBackground,Image} from "react-native";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, ImageBackground,Image,Animated} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import AntDesign from "@expo/vector-icons/AntDesign";
@@ -102,10 +102,53 @@ const CATEGORY_TABS: {
 
 export default function Investment() {
   const [plans, setPlans] = useState<InsurancePlan[]>([]);
+  const arrowTranslateY = useRef(new Animated.Value(0)).current;
+  const arrowOpacity = useRef(new Animated.Value(1)).current;
   const [selectedCategory, setSelectedCategory] = useState<Category>("all");
-
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+
+  useEffect(() => {
+  const animation = Animated.loop(
+    Animated.sequence([
+      Animated.timing(arrowTranslateY, {
+        toValue: 7,
+        duration: 650,
+        useNativeDriver: true,
+      }),
+      Animated.timing(arrowTranslateY, {
+        toValue: 0,
+        duration: 650,
+        useNativeDriver: true,
+      }),
+    ])
+  );
+
+  animation.start();
+
+  return () => {
+    animation.stop();
+  };
+}, []);
+
+const handleScroll = (event: any) => {
+  const offsetY = event.nativeEvent.contentOffset.y;
+
+  if (offsetY > 20) {
+    Animated.timing(arrowOpacity, {
+      toValue: 0,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
+  } else {
+    Animated.timing(arrowOpacity, {
+      toValue: 1,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
+  }
+};
 
   useEffect(() => {
     fetchAllInsurancePlans();
@@ -356,7 +399,7 @@ export default function Investment() {
           <View style={styles.infoRow}>
             <Ionicons
               name="person-outline"
-              size={16}
+              size={18}
               color="#287454"
             />
 
@@ -395,6 +438,7 @@ export default function Investment() {
                 )}
             </View>
           )}
+
 
         <View style={styles.cardBottom}>
           <View>
@@ -436,7 +480,7 @@ export default function Investment() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={["top"]}>
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={ styles.scrollContent}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={ styles.scrollContent} onScroll={handleScroll}scrollEventThrottle={16}>
 
         <View style={styles.header}>
           <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
@@ -588,6 +632,28 @@ export default function Investment() {
           </View>
         ) : null}
       </ScrollView>
+      <Animated.View
+  pointerEvents="none"
+  style={[
+    styles.scrollIndicator,
+    {
+      opacity: arrowOpacity,
+      transform: [
+        {
+          translateY: arrowTranslateY,
+        },
+      ],
+    },
+  ]}
+>
+  <View style={styles.scrollArrowCircle}>
+    <Ionicons
+      name="chevron-down"
+      size={21}
+      color="#287454"
+    />
+  </View>
+</Animated.View>
     </SafeAreaView>
   );
 }
@@ -602,7 +668,43 @@ const styles = StyleSheet.create({
   scrollContent: {
     paddingBottom: 30,
   },
+  scrollIndicator: {
+  position: "absolute",
+  left: 0,
+  right: 0,
+  bottom: 100,
 
+  height: 44,
+
+  alignItems: "center",
+  justifyContent: "center",
+
+  zIndex: 999,
+  elevation: 999,
+},
+scrollArrowCircle: {
+  width: 42,
+  height: 42,
+  borderRadius: 21,
+
+  backgroundColor: "#FFFFFF",
+
+  alignItems: "center",
+  justifyContent: "center",
+
+  borderWidth: 1,
+  borderColor: "#DDEBE3",
+
+  shadowColor: "#103D43",
+  shadowOffset: {
+    width: 0,
+    height: 3,
+  },
+  shadowOpacity: 0.15,
+  shadowRadius: 8,
+
+  elevation: 6,
+},
 
   header: {
     flexDirection: "row",
@@ -801,7 +903,7 @@ const styles = StyleSheet.create({
   },
 
   insurerName: {
-    fontSize: 11,
+    fontSize: 14,
     color: "#103D43",
     fontFamily: 'DMSanSemibold'
     },
@@ -830,8 +932,8 @@ const styles = StyleSheet.create({
   },
 
   subCategory: {
-    fontSize: 11,
-    color: "#78928A",
+    fontSize: 12,
+    color: "#32423d",
     marginTop: 10,
     textTransform: "capitalize",
     fontFamily: 'DMSanRegular'
@@ -856,7 +958,7 @@ const styles = StyleSheet.create({
   },
 
   detailLabel: {
-    fontSize: 10,
+    fontSize: 11,
     color: "#475452",
     marginBottom: 4,
     fontFamily: 'DMSanRegular'
@@ -875,7 +977,7 @@ const styles = StyleSheet.create({
   },
 
   infoText: {
-    fontSize: 11,
+    fontSize: 12,
     color: "#55766A",
     marginLeft: 7,
     fontFamily: 'DMSanRegular'
@@ -886,7 +988,7 @@ const styles = StyleSheet.create({
   },
 
   featureTitle: {
-    fontSize: 11,
+    fontSize: 13,
     fontFamily: 'DMSanSemibold',
     color: "#103D43",
     marginBottom: 5,
@@ -900,7 +1002,7 @@ const styles = StyleSheet.create({
 
   featureText: {
     flex: 1,
-    fontSize: 10,
+    fontSize: 12,
     color: "#55766A",
     marginLeft: 6,
     lineHeight: 15,

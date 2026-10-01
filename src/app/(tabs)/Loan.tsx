@@ -58,11 +58,11 @@ export default function Loan({ navigation }: any) {
           </View>
         </View>
 
-        <View style={styles.sectionheading}>
-          <Text>
+  
+          <Text style={[styles.sectionheading, {marginTop:10}]}>
             Select Loan Duration
           </Text>
-        </View>
+
       </ScrollView>
     </SafeAreaView>
   );
@@ -149,6 +149,5 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   sectionheading:{
-    marginTop: 15
   }
 });
