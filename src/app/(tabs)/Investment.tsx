@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, ImageBackground,} from "react-native";
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, ImageBackground,Image} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
+import AntDesign from "@expo/vector-icons/AntDesign";
 import { router } from "expo-router";
 
 const API_KEY = "wbi_demo_2026_public";
@@ -39,30 +40,63 @@ interface InsurancePlan {
      lastVerified?: string;
   // sourceUrl?: string;
 }
+const getInsurerLogo = (slug?: string) => {
+  switch (slug) {
+    case "hdfc-ergo":
+      return require("@/assets/insurer/hdfc-ergo.png");
+
+    case "icici-lombard":
+      return require("@/assets/insurer/icici-lombard.png");
+
+    case "bajaj-allianz":
+      return require("@/assets/insurer/bajaj-allianz.png");
+
+    case "tata-aig":
+      return require("@/assets/insurer/tata.png");
+
+    case "star-health":
+      return require("@/assets/insurer/star-health.png");
+      
+    case "niva-bupa":
+      return require("@/assets/insurer/niva-bupa.jpg");
+
+    case "care-health":
+      return require("@/assets/insurer/care-health.png");
+
+    default:
+      return require("@/assets/insurer/blank.png");
+  }
+};
 
 const CATEGORY_TABS: {
   key: Category;
   label: string;
+  icon: any;
 }[] = [
   {
     key: "all",
     label: "All",
+    icon: "apps-outline",
   },
   {
     key: "health",
     label: "Health Insurance",
+    icon: "shield-checkmark-outline",
   },
   {
     key: "term-life",
     label: "Term Life",
+    icon: "heart-outline"
   },
   {
     key: "motor",
     label: "Motor Insurance",
+    icon: "car-outline"
   },
   {
     key: "travel",
     label: "Travel Insurance",
+    icon: "airplane-outline"
   },
 ];
 
@@ -260,12 +294,13 @@ export default function Investment() {
 
         <View style={styles.planTopRow}>
           <View style={styles.insurerIcon}>
-            <Text style={styles.insurerInitial}>
-              {plan.insurerName
-                ?.charAt(0)
-                ?.toUpperCase() || "I"}
-            </Text>
-          </View>
+          {getInsurerLogo(plan.insurerSlug) ? (
+            <Image source={getInsurerLogo(plan.insurerSlug)!} style={styles.insurerLogo} resizeMode="contain"/>
+          ) : (
+               <Text style={styles.insurerInitial}>
+               {/* {plan.insurerName?.charAt(0)?.toUpperCase() || "I"} */}
+               </Text>)}
+        </View>
 
           <View style={styles.planTitleContainer}>
             <Text style={styles.insurerName} numberOfLines={1}>
@@ -425,11 +460,11 @@ export default function Investment() {
           <TouchableOpacity
             style={styles.profileButton}
           >
-            <Ionicons
+            {/* <Ionicons
               name="person-outline"
               size={21}
               color="#287454"
-            />
+            /> */}
           </TouchableOpacity>
         </View>
 
@@ -442,9 +477,9 @@ export default function Investment() {
               </Text>
 
               <Text style={styles.heroDescription}>
-                Explore insurance plans and
-                secure your future with the right protection.
+                {'Explore insurance plans and secure\nyour future with the right protection'}
               </Text>
+
 
               <TouchableOpacity style={styles.heroButton} onPress={() => setSelectedCategory("all")}>
                 <Text style={styles.heroButtonText}>
@@ -473,9 +508,12 @@ export default function Investment() {
 
                 return (
                   <TouchableOpacity key={tab.key} style={[ styles.categoryTab, isSelected && styles.selectedCategoryTab,]}
-                    onPress={() =>
-                      setSelectedCategory(
-                        tab.key)}>
+                    onPress={() => setSelectedCategory( tab.key)}>
+                      <Ionicons
+                       name={tab.icon}
+                       size={16}
+                       color={isSelected ? "#FFFFFF" : "#55766A"}
+                      style={styles.categoryTabIcon}/>
                     <Text
                       style={[ styles.categoryTabText, isSelected && styles.selectedCategoryTabText,]}>
                       {tab.label}
@@ -579,7 +617,8 @@ const styles = StyleSheet.create({
     height: 42,
     alignItems: "center",
     justifyContent: "center",
-    marginRight: 12,
+    marginRight: 9,
+    marginLeft: -8
   },
 
   headerTitleContainer: {
@@ -594,7 +633,7 @@ const styles = StyleSheet.create({
 
   headerSubtitle: {
     fontSize: 12,
-    color: "#78928A",
+    color: "#0f1514",
     fontFamily: 'DMSanRegular',
     marginTop: 2,
   },
@@ -675,11 +714,16 @@ const styles = StyleSheet.create({
   },
 
   categoryTab: {
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    borderRadius: 20,
-    backgroundColor: "#E8F2EC",
+   flexDirection: "row",
+  alignItems: "center",
+  paddingHorizontal: 16,
+  paddingVertical: 10,
+  borderRadius: 20,
+  backgroundColor: "#E8F2EC",
   },
+  categoryTabIcon: {
+  marginRight: 7,
+},
 
   selectedCategoryTab: {
     backgroundColor: "#287454",
@@ -735,10 +779,13 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 13,
-    backgroundColor: "#E7F3EC",
     alignItems: "center",
     justifyContent: "center",
   },
+  insurerLogo: {
+  width: 50,
+  height: 50,
+},
 
   insurerInitial: {
     fontSize: 18,
@@ -748,13 +795,14 @@ const styles = StyleSheet.create({
 
   planTitleContainer: {
     flex: 1,
-    marginLeft: 11,
+    marginTop: 10,
+    marginLeft: 15,
     marginRight: 8,
   },
 
   insurerName: {
     fontSize: 11,
-    color: "#78928A",
+    color: "#103D43",
     fontFamily: 'DMSanSemibold'
     },
 
@@ -769,6 +817,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F0F7F3",
     paddingHorizontal: 8,
     paddingVertical: 5,
+    marginTop: -13,
     borderRadius: 8,
     maxWidth: 95,
   },
@@ -808,7 +857,7 @@ const styles = StyleSheet.create({
 
   detailLabel: {
     fontSize: 10,
-    color: "#78928A",
+    color: "#475452",
     marginBottom: 4,
     fontFamily: 'DMSanRegular'
   },

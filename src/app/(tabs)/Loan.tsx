@@ -17,7 +17,6 @@ export default function Loan({ navigation }: any) {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <StatusBar barStyle="dark-content" backgroundColor="#F5F7F5" />
 
       <View style={styles.header}>
         <TouchableOpacity style={styles.headerIconBtn} onPress={() =>
@@ -57,6 +56,12 @@ export default function Loan({ navigation }: any) {
             <Text style={styles.limitLabel}>{formatCurrency(MIN_AMOUNT)} (Min.)</Text>
             <Text style={styles.limitLabel}>{formatCurrency(MAX_AMOUNT)} (Max.)</Text>
           </View>
+        </View>
+
+        <View style={styles.sectionheading}>
+          <Text>
+            Select Loan Duration
+          </Text>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -143,4 +148,7 @@ const styles = StyleSheet.create({
     color: '#C6DDD0',
     fontWeight: '500',
   },
+  sectionheading:{
+    marginTop: 15
+  }
 });
