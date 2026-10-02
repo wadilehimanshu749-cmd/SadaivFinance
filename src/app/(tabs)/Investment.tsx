@@ -132,7 +132,7 @@ export default function Investment() {
   };
 }, []);
 
-const handleScroll = (event: any) => {
+  const handleScroll = (event: any) => {
   const offsetY = event.nativeEvent.contentOffset.y;
 
   if (offsetY > 20) {
@@ -632,10 +632,7 @@ const handleScroll = (event: any) => {
           </View>
         ) : null}
       </ScrollView>
-      <Animated.View
-  pointerEvents="none"
-  style={[
-    styles.scrollIndicator,
+      <Animated.View pointerEvents="none" style={[ styles.scrollIndicator,
     {
       opacity: arrowOpacity,
       transform: [
@@ -644,8 +641,7 @@ const handleScroll = (event: any) => {
         },
       ],
     },
-  ]}
->
+  ]}>
   <View style={styles.scrollArrowCircle}>
     <Ionicons
       name="chevron-down"
@@ -769,7 +765,7 @@ scrollArrowCircle: {
   },
 
   heroContent: {
-    paddingHorizontal: 22,
+    paddingHorizontal: 15,
     width: "80%",
   },
 
@@ -941,20 +937,19 @@ scrollArrowCircle: {
 
   detailsContainer: {
     flexDirection: "row",
-    backgroundColor: "#e2f0e8",
+    backgroundColor: "#e9f5ee",
     borderRadius: 13,
     marginTop: 13,
     paddingVertical: 11,
   },
 
   detailBox: {
-    flex: 1,
     paddingHorizontal: 10,
   },
 
   verticalLine: {
     width: 1,
-    backgroundColor: "#D7E7DE",
+    backgroundColor: "#82a092",
   },
 
   detailLabel: {
@@ -967,7 +962,8 @@ scrollArrowCircle: {
   detailValue: {
     fontSize: 12,
     color: "#103D43",
-    fontFamily: 'DMSanSemibold'
+    fontFamily: 'DMSanSemibold',
+    marginTop: 5
   },
 
   infoRow: {
