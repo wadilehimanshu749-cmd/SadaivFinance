@@ -170,7 +170,7 @@ export default function Loan({ navigation }: any) {
           </View>
         </View>
 
-        <TouchableOpacity style={styles.primaryButton}activeOpacity={0.88} onPress={() => router.push("./LoanKYC")}>
+        <TouchableOpacity style={styles.primaryButton}activeOpacity={0.88} onPress={() => router.push("/LoanKYC")}>
            <Text style={styles.primaryButtonText}>
               Proceed to Personal Details
           </Text>
