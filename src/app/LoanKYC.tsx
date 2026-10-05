@@ -1,12 +1,23 @@
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, TextInput, Animated } from 'react-native';
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
+import { Dropdown } from 'react-native-element-dropdown';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function LoanKYC() {
+const employmentTypes = [
+  { label: "Salaried", value: "salaried" },
+  { label: "Self-Employed", value: "self-employed" },
+  { label: "Business Owner", value: "business-owner" },
+  { label: "Professional", value: "professional" },
+  { label: "Government Employee", value: "government" },
+];
+
+
+export default function LoanKYC({ navigation }: any) {
   const arrowTranslateY = useRef(new Animated.Value(0)).current;
   const arrowOpacity = useRef(new Animated.Value(1)).current;
+  const [employmentType, setEmploymentType] = useState(null);
 
   useEffect(() => {
     const animation = Animated.loop(
@@ -23,17 +34,17 @@ export default function LoanKYC() {
         }),
       ])
     );
-  
+
     animation.start();
-  
+
     return () => {
       animation.stop();
     };
   }, []);
-  
+
   const handleScroll = (event: any) => {
     const offsetY = event.nativeEvent.contentOffset.y;
-  
+
     if (offsetY > 20) {
       Animated.timing(arrowOpacity, {
         toValue: 0,
@@ -51,14 +62,25 @@ export default function LoanKYC() {
 
   return (
     <SafeAreaView style={styles.safearea}>
-      <ScrollView  showsVerticalScrollIndicator={false}  contentContainerStyle={styles.scrollViewContent} onScroll={handleScroll} scrollEventThrottle={16}>
+      <View style={styles.header}>
+        <TouchableOpacity style={styles.headerIconBtn} onPress={() =>
+          router.back()} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+          <Ionicons name="arrow-back" size={23} color="#172017" />
+        </TouchableOpacity>
+
+        <View style={styles.headerTextWrapper}>
+          <Text style={styles.headerTitle}>Personal Loan Application</Text>
+          <Text style={styles.headerSubtitle}>Configure your New loan</Text>
+        </View>
+      </View>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollViewContent} onScroll={handleScroll} scrollEventThrottle={16}>
         <View style={styles.personalCard}>
           <View style={styles.greenCard}>
             <View style={styles.iconCircle}>
               <Ionicons
                 name="person-outline"
-                size={20}
-                color="#FFFFFF"/>
+                size={23}
+                color="#FFFFFF" />
             </View>
 
             <View style={styles.greenCardText}>
@@ -75,7 +97,7 @@ export default function LoanKYC() {
               </Text>
 
               <View style={styles.inputContainer}>
-                <Ionicons name="person-outline" size={20} color="#356A53"/>
+                <Ionicons name="person-outline" size={20} color="#356A53" />
 
                 <TextInput
                   style={styles.input}
@@ -93,13 +115,13 @@ export default function LoanKYC() {
                 <Ionicons
                   name="calendar-outline"
                   size={20}
-                  color="#356A53"/>
+                  color="#356A53" />
 
                 <TextInput
                   style={styles.input}
                   placeholder="DD/MM/YYYY"
                   placeholderTextColor="#82958D"
-                  keyboardType="numeric"/>
+                  keyboardType="numeric" />
               </View>
             </View>
 
@@ -137,7 +159,7 @@ export default function LoanKYC() {
                   style={styles.input}
                   placeholder="ABCDE1234E"
                   placeholderTextColor="#82958D"
-                  autoCapitalize="characters"/>
+                  autoCapitalize="characters" />
               </View>
             </View>
           </View>
@@ -146,7 +168,7 @@ export default function LoanKYC() {
         <View style={styles.personalCard2}>
           <View style={styles.greenCard}>
             <View style={styles.iconCircle}>
-              <Ionicons name="briefcase-outline" size={20} color="#FFFFFF"/>
+              <Ionicons name="briefcase-outline" size={23} color="#FFFFFF" />
             </View>
 
             <View style={styles.greenCardText}>
@@ -162,16 +184,22 @@ export default function LoanKYC() {
                 Employment Type
               </Text>
 
-              <View style={styles.inputContainer}>
+              <View style={styles.dropdownContainer}>
                 <Ionicons
                   name="briefcase-outline"
                   size={20}
-                  color="#356A53"/>
+                  color="#356A53" />
 
-                <TextInput
-                  style={styles.input}
-                  placeholder="Salaried / Self-Employed"
-                  placeholderTextColor="#82958D"/>
+                <Dropdown style={styles.dropdown} placeholderStyle={styles.dropdownplaceholder}
+                  selectedTextStyle={styles.dropdownselectedtext} containerStyle={styles.dropdownmenu}
+                  itemTextStyle={styles.dropdownitemtext} data={employmentTypes}
+                  labelField='label' valueField='value' placeholder='Select Employment Type'
+                  value={employmentTypes} onChange={item => { setEmploymentType(item.value) }}
+                  renderRightIcon={() => (
+                    <Ionicons name="chevron-down" size={20} color="#356A53" />
+
+                  )} />
+
               </View>
             </View>
 
@@ -184,12 +212,12 @@ export default function LoanKYC() {
                 <Ionicons
                   name="business-outline"
                   size={20}
-                  color="#356A53"/>
+                  color="#356A53" />
 
                 <TextInput
                   style={styles.input}
                   placeholder="Enter company name"
-                  placeholderTextColor="#82958D"/>
+                  placeholderTextColor="#82958D" />
               </View>
             </View>
 
@@ -202,13 +230,13 @@ export default function LoanKYC() {
                 <Ionicons
                   name="mail-outline"
                   size={20}
-                  color="#356A53"/>
+                  color="#356A53" />
 
                 <TextInput
                   style={styles.input}
                   placeholder="name@company.com"
                   placeholderTextColor="#82958D"
-                  keyboardType="email-address"/>
+                  keyboardType="email-address" />
               </View>
             </View>
 
@@ -252,38 +280,34 @@ export default function LoanKYC() {
           </View>
         </View>
 
-        <TouchableOpacity style={styles.proceedButton} activeOpacity={0.88}>
+        <TouchableOpacity style={styles.proceedButton} activeOpacity={0.88} onPress={() => router.push('/LoanSanction')}>
           <Text style={styles.proceedButtonText}>
-            Submit Loan Application
+            Proceed to KYC & Documents
           </Text>
 
           <Ionicons
             name="arrow-forward"
             size={20}
-            color="#FFFFFF"/>
+            color="#FFFFFF" />
         </TouchableOpacity>
       </ScrollView>
 
-      <Animated.View 
-        pointerEvents="none" 
-        style={[
-          styles.scrollIndicator,
-          {
-            opacity: arrowOpacity,
-            transform: [
-              {
-                translateY: arrowTranslateY,
-              },
-            ],
-          },
-        ]}
-      >
+      <Animated.View pointerEvents="none" style={[
+        styles.scrollIndicator,
+        {
+          opacity: arrowOpacity,
+          transform: [
+            {
+              translateY: arrowTranslateY,
+            },
+          ],
+        },
+      ]} >
         <View style={styles.scrollArrowCircle}>
           <Ionicons
             name="chevron-down"
             size={21}
-            color="#287454"
-          />
+            color="#287454" />
         </View>
       </Animated.View>
     </SafeAreaView>
@@ -298,6 +322,33 @@ const styles = StyleSheet.create({
   scrollViewContent: {
     paddingHorizontal: 18,
     paddingBottom: 35,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingTop: 8,
+    paddingBottom: 16,
+    marginTop: 10,
+  },
+  headerIconBtn: {
+    padding: 4,
+  },
+  headerTextWrapper: {
+    flex: 1,
+    marginLeft: 12,
+  },
+  headerTitle: {
+    fontSize: 19,
+    fontFamily: 'SoraSemibold',
+    color: '#153123',
+    letterSpacing: -0.3,
+  },
+  headerSubtitle: {
+    fontSize: 13,
+    color: '#678071',
+    fontFamily: 'DMSanRegular',
+    marginTop: 2,
   },
   personalCard: {
     backgroundColor: "#FFFFFF",
@@ -325,8 +376,8 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   greenCard: {
-    minHeight: 92,
-    paddingHorizontal: 20,
+    minHeight: 72,
+    paddingHorizontal: 5,
     paddingVertical: 17,
     backgroundColor: "#245D45",
     flexDirection: "row",
@@ -336,12 +387,11 @@ const styles = StyleSheet.create({
     width: 42,
     height: 42,
     borderRadius: 26,
-    backgroundColor: "#4C886B",
     alignItems: "center",
     justifyContent: "center",
   },
   greenCardText: {
-    marginLeft: 14,
+    marginLeft: 5,
   },
   greenCardTitle: {
     fontSize: 20,
@@ -380,6 +430,49 @@ const styles = StyleSheet.create({
     fontFamily: "DMSanRegular",
     color: "#173F32",
   },
+
+  dropdownContainer: {
+    height: 52,
+    borderWidth: 1,
+    borderColor: "#D5E2DD",
+    borderRadius: 14,
+    backgroundColor: "#F8FBF9",
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 13,
+  },
+
+  dropdown: {
+    flex: 1,
+    marginLeft: 10,
+    height: 52,
+  },
+
+  dropdownplaceholder: {
+    fontSize: 14.5,
+    fontFamily: "DMSanRegular",
+    color: "#82958D",
+  },
+
+  dropdownselectedtext: {
+    fontSize: 14.5,
+    fontFamily: "DMSanRegular",
+    color: "#173F32",
+  },
+
+  dropdownmenu: {
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: "#D5E2DD",
+    backgroundColor: "#FFFFFF",
+  },
+
+  dropdownitemtext: {
+    fontSize: 14,
+    fontFamily: "DMSanRegular",
+    color: "#173F32",
+  },
+
   infoContainer: {
     marginTop: 18,
     paddingHorizontal: 15,

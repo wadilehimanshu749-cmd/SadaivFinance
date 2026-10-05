@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import {View,Text,TextInput,StyleSheet,TouchableOpacity,Image,Dimensions,ImageBackground,ImageSourcePropType,Animated,} from "react-native";
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image, Dimensions, ImageBackground, ImageSourcePropType, Animated, } from "react-native";
 import Header from "../components/Header";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
@@ -19,7 +19,7 @@ export default function HomeScreen() {
         scrollEventThrottle={16}
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-          { useNativeDriver: false } )} >
+          { useNativeDriver: false })} >
 
         <View style={styles.topSectionWrapper}>
           <ImageBackground source={require("@/assets/images/bg-main.jpg")} style={styles.headerBackground} imageStyle={styles.headerBackgroundImage} >
@@ -33,7 +33,7 @@ export default function HomeScreen() {
 
           <View style={styles.searchContainer}>
             <Ionicons name="search-outline" size={21} color="#7C847B" />
-            <TextInput  placeholder="Search name, UPI ID or mobile"  placeholderTextColor="#9A9F99"  style={styles.searchInput} />
+            <TextInput placeholder="Search name, UPI ID or mobile" placeholderTextColor="#9A9F99" style={styles.searchInput} />
             <TouchableOpacity style={styles.scanIcon}>
               <Ionicons name="scan-outline" size={21} color="#304B2F" />
             </TouchableOpacity>
@@ -319,7 +319,7 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingBottom: 50,
-  
+
   },
   topSectionWrapper: {
     position: "relative",

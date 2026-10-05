@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, ImageBackground,Image,Animated} from "react-native";
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, ImageBackground, Image, Animated } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import AntDesign from "@expo/vector-icons/AntDesign";
@@ -37,7 +37,7 @@ interface InsurancePlan {
   // renewability?: string;
   // claimSettlement?: any;
   // confidenceScore?: string;
-     lastVerified?: string;
+  lastVerified?: string;
   // sourceUrl?: string;
 }
 const getInsurerLogo = (slug?: string) => {
@@ -56,7 +56,7 @@ const getInsurerLogo = (slug?: string) => {
 
     case "star-health":
       return require("@/assets/insurer/star-health.png");
-      
+
     case "niva-bupa":
       return require("@/assets/insurer/niva-bupa.jpg");
 
@@ -73,32 +73,32 @@ const CATEGORY_TABS: {
   label: string;
   icon: any;
 }[] = [
-  {
-    key: "all",
-    label: "All",
-    icon: "apps-outline",
-  },
-  {
-    key: "health",
-    label: "Health Insurance",
-    icon: "shield-checkmark-outline",
-  },
-  {
-    key: "term-life",
-    label: "Term Life",
-    icon: "heart-outline"
-  },
-  {
-    key: "motor",
-    label: "Motor Insurance",
-    icon: "car-outline"
-  },
-  {
-    key: "travel",
-    label: "Travel Insurance",
-    icon: "airplane-outline"
-  },
-];
+    {
+      key: "all",
+      label: "All",
+      icon: "apps-outline",
+    },
+    {
+      key: "health",
+      label: "Health Insurance",
+      icon: "shield-checkmark-outline",
+    },
+    {
+      key: "term-life",
+      label: "Term Life",
+      icon: "heart-outline"
+    },
+    {
+      key: "motor",
+      label: "Motor Insurance",
+      icon: "car-outline"
+    },
+    {
+      key: "travel",
+      label: "Travel Insurance",
+      icon: "airplane-outline"
+    },
+  ];
 
 export default function Investment() {
   const [plans, setPlans] = useState<InsurancePlan[]>([]);
@@ -110,45 +110,45 @@ export default function Investment() {
 
 
   useEffect(() => {
-  const animation = Animated.loop(
-    Animated.sequence([
-      Animated.timing(arrowTranslateY, {
-        toValue: 7,
-        duration: 650,
-        useNativeDriver: true,
-      }),
-      Animated.timing(arrowTranslateY, {
-        toValue: 0,
-        duration: 650,
-        useNativeDriver: true,
-      }),
-    ])
-  );
+    const animation = Animated.loop(
+      Animated.sequence([
+        Animated.timing(arrowTranslateY, {
+          toValue: 7,
+          duration: 650,
+          useNativeDriver: true,
+        }),
+        Animated.timing(arrowTranslateY, {
+          toValue: 0,
+          duration: 650,
+          useNativeDriver: true,
+        }),
+      ])
+    );
 
-  animation.start();
+    animation.start();
 
-  return () => {
-    animation.stop();
-  };
-}, []);
+    return () => {
+      animation.stop();
+    };
+  }, []);
 
   const handleScroll = (event: any) => {
-  const offsetY = event.nativeEvent.contentOffset.y;
+    const offsetY = event.nativeEvent.contentOffset.y;
 
-  if (offsetY > 20) {
-    Animated.timing(arrowOpacity, {
-      toValue: 0,
-      duration: 300,
-      useNativeDriver: true,
-    }).start();
-  } else {
-    Animated.timing(arrowOpacity, {
-      toValue: 1,
-      duration: 300,
-      useNativeDriver: true,
-    }).start();
-  }
-};
+    if (offsetY > 20) {
+      Animated.timing(arrowOpacity, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      Animated.timing(arrowOpacity, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    }
+  };
 
   useEffect(() => {
     fetchAllInsurancePlans();
@@ -202,7 +202,7 @@ export default function Investment() {
           result?.products?.length || 0
         );
 
-    
+
         if (Array.isArray(result?.products)) {
           return result.products.map(
             (product: InsurancePlan) => ({
@@ -222,18 +222,18 @@ export default function Investment() {
       console.log("TOTAL PLANS:", allPlans.length);
 
       setPlans(allPlans);
-    } 
+    }
     catch (err: any) {
       console.log("API ERROR");
       console.log(err);
 
       setError(
         err?.message ||
-          "Unable to fetch insurance plans"
+        "Unable to fetch insurance plans"
       );
 
       setPlans([]);
-    } 
+    }
     finally {
       setLoading(false);
     }
@@ -271,13 +271,11 @@ export default function Investment() {
     const max =
       plan.premiumRange?.illustrativeMax;
 
-    if ( min === undefined && max === undefined ) 
-      {
+    if (min === undefined && max === undefined) {
       return "Premium not available";
     }
 
-    if ( min !== undefined && max !== undefined) 
-      {
+    if (min !== undefined && max !== undefined) {
       return `${formatAmount(min)} - ${formatAmount(
         max
       )}`;
@@ -292,13 +290,11 @@ export default function Investment() {
     const min = plan.sumInsured?.min;
     const max = plan.sumInsured?.max;
 
-    if ( min === undefined && max === undefined) 
-      {
+    if (min === undefined && max === undefined) {
       return "Not available";
     }
 
-    if ( min !== undefined && max !== undefined)
-       {
+    if (min !== undefined && max !== undefined) {
       return `${formatAmount(min)} - ${formatAmount(
         max
       )}`;
@@ -337,13 +333,13 @@ export default function Investment() {
 
         <View style={styles.planTopRow}>
           <View style={styles.insurerIcon}>
-          {getInsurerLogo(plan.insurerSlug) ? (
-            <Image source={getInsurerLogo(plan.insurerSlug)!} style={styles.insurerLogo} resizeMode="contain"/>
-          ) : (
-               <Text style={styles.insurerInitial}>
-               {/* {plan.insurerName?.charAt(0)?.toUpperCase() || "I"} */}
-               </Text>)}
-        </View>
+            {getInsurerLogo(plan.insurerSlug) ? (
+              <Image source={getInsurerLogo(plan.insurerSlug)!} style={styles.insurerLogo} resizeMode="contain" />
+            ) : (
+              <Text style={styles.insurerInitial}>
+                {/* {plan.insurerName?.charAt(0)?.toUpperCase() || "I"} */}
+              </Text>)}
+          </View>
 
           <View style={styles.planTitleContainer}>
             <Text style={styles.insurerName} numberOfLines={1}>
@@ -421,21 +417,21 @@ export default function Investment() {
               <Text style={styles.featureTitle}>
                 Key Features
               </Text>
- 
-              {plan.specialFeatures.slice(0, 5).filter((feature,featureIndex ) => featureIndex !==3 ).map(
-                  (
-                    feature,
-                    featureIndex
-                  ) => (
-                    <View key={featureIndex} style={  styles.featureRow}>
-                      
-                        <Ionicons name="checkmark-circle" size={15} color="#287454" />
-                      <Text style={ styles.featureText} numberOfLines={2}>
-                        {feature}
-                      </Text>
-                    </View>
-                  )
-                )}
+
+              {plan.specialFeatures.slice(0, 5).filter((feature, featureIndex) => featureIndex !== 3).map(
+                (
+                  feature,
+                  featureIndex
+                ) => (
+                  <View key={featureIndex} style={styles.featureRow}>
+
+                    <Ionicons name="checkmark-circle" size={15} color="#287454" />
+                    <Text style={styles.featureText} numberOfLines={2}>
+                      {feature}
+                    </Text>
+                  </View>
+                )
+              )}
             </View>
           )}
 
@@ -449,7 +445,7 @@ export default function Investment() {
             </Text>
           </View>
 
-          <TouchableOpacity style={styles.viewButton} onPress={() => { console.log( "Selected Plan:",  plan); }}>
+          <TouchableOpacity style={styles.viewButton} onPress={() => { console.log("Selected Plan:", plan); }}>
             <Text style={styles.viewButtonText}>
               View Plan
             </Text>
@@ -480,7 +476,7 @@ export default function Investment() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={["top"]}>
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={ styles.scrollContent} onScroll={handleScroll}scrollEventThrottle={16}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent} onScroll={handleScroll} scrollEventThrottle={16}>
 
         <View style={styles.header}>
           <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
@@ -545,21 +541,21 @@ export default function Investment() {
             {
               false
             }
-            contentContainerStyle={ styles.tabsContainer}>
+            contentContainerStyle={styles.tabsContainer}>
             {CATEGORY_TABS.map(
               (tab) => {
                 const isSelected = selectedCategory === tab.key;
 
                 return (
-                  <TouchableOpacity key={tab.key} style={[ styles.categoryTab, isSelected && styles.selectedCategoryTab,]}
-                    onPress={() => setSelectedCategory( tab.key)}>
-                      <Ionicons
-                       name={tab.icon}
-                       size={16}
-                       color={isSelected ? "#FFFFFF" : "#55766A"}
-                      style={styles.categoryTabIcon}/>
+                  <TouchableOpacity key={tab.key} style={[styles.categoryTab, isSelected && styles.selectedCategoryTab,]}
+                    onPress={() => setSelectedCategory(tab.key)}>
+                    <Ionicons
+                      name={tab.icon}
+                      size={16}
+                      color={isSelected ? "#FFFFFF" : "#55766A"}
+                      style={styles.categoryTabIcon} />
                     <Text
-                      style={[ styles.categoryTabText, isSelected && styles.selectedCategoryTabText,]}>
+                      style={[styles.categoryTabText, isSelected && styles.selectedCategoryTabText,]}>
                       {tab.label}
                     </Text>
                   </TouchableOpacity>
@@ -575,10 +571,10 @@ export default function Investment() {
               Insurance Plans
             </Text>
 
-            
+
           </View>
 
-          
+
         </View>
 
         {error ? (
@@ -614,7 +610,7 @@ export default function Investment() {
             )}
           </View>
         ) : !error ? (
-          <View style={ styles.emptyContainer }>
+          <View style={styles.emptyContainer}>
             <Ionicons
               name="document-text-outline"
               size={45}
@@ -632,24 +628,24 @@ export default function Investment() {
           </View>
         ) : null}
       </ScrollView>
-      <Animated.View pointerEvents="none" style={[ styles.scrollIndicator,
-    {
-      opacity: arrowOpacity,
-      transform: [
-        {
-          translateY: arrowTranslateY,
-        },
-      ],
-    },
-  ]}>
-  <View style={styles.scrollArrowCircle}>
-    <Ionicons
-      name="chevron-down"
-      size={21}
-      color="#287454"
-    />
-  </View>
-</Animated.View>
+      <Animated.View pointerEvents="none" style={[styles.scrollIndicator,
+      {
+        opacity: arrowOpacity,
+        transform: [
+          {
+            translateY: arrowTranslateY,
+          },
+        ],
+      },
+      ]}>
+        <View style={styles.scrollArrowCircle}>
+          <Ionicons
+            name="chevron-down"
+            size={21}
+            color="#287454"
+          />
+        </View>
+      </Animated.View>
     </SafeAreaView>
   );
 }
@@ -665,42 +661,42 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
   },
   scrollIndicator: {
-  position: "absolute",
-  left: 0,
-  right: 0,
-  bottom: 100,
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 100,
 
-  height: 44,
+    height: 44,
 
-  alignItems: "center",
-  justifyContent: "center",
+    alignItems: "center",
+    justifyContent: "center",
 
-  zIndex: 999,
-  elevation: 999,
-},
-scrollArrowCircle: {
-  width: 42,
-  height: 42,
-  borderRadius: 21,
-
-  backgroundColor: "#FFFFFF",
-
-  alignItems: "center",
-  justifyContent: "center",
-
-  borderWidth: 1,
-  borderColor: "#DDEBE3",
-
-  shadowColor: "#103D43",
-  shadowOffset: {
-    width: 0,
-    height: 3,
+    zIndex: 999,
+    elevation: 999,
   },
-  shadowOpacity: 0.15,
-  shadowRadius: 8,
+  scrollArrowCircle: {
+    width: 42,
+    height: 42,
+    borderRadius: 21,
 
-  elevation: 6,
-},
+    backgroundColor: "#FFFFFF",
+
+    alignItems: "center",
+    justifyContent: "center",
+
+    borderWidth: 1,
+    borderColor: "#DDEBE3",
+
+    shadowColor: "#103D43",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+
+    elevation: 6,
+  },
 
   header: {
     flexDirection: "row",
@@ -812,16 +808,16 @@ scrollArrowCircle: {
   },
 
   categoryTab: {
-   flexDirection: "row",
-  alignItems: "center",
-  paddingHorizontal: 16,
-  paddingVertical: 10,
-  borderRadius: 20,
-  backgroundColor: "#E8F2EC",
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderRadius: 20,
+    backgroundColor: "#E8F2EC",
   },
   categoryTabIcon: {
-  marginRight: 7,
-},
+    marginRight: 7,
+  },
 
   selectedCategoryTab: {
     backgroundColor: "#287454",
@@ -881,9 +877,9 @@ scrollArrowCircle: {
     justifyContent: "center",
   },
   insurerLogo: {
-  width: 50,
-  height: 50,
-},
+    width: 50,
+    height: 50,
+  },
 
   insurerInitial: {
     fontSize: 18,
@@ -902,7 +898,7 @@ scrollArrowCircle: {
     fontSize: 14,
     color: "#103D43",
     fontFamily: 'DMSanSemibold'
-    },
+  },
 
   planName: {
     fontSize: 15,

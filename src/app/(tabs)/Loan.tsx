@@ -35,11 +35,10 @@ export default function Loan({ navigation }: any) {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.header}>
-        <TouchableOpacity style={styles.headerIconBtn} onPress={() =>
-           navigation?.goBack()} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
-              <Ionicons name="arrow-back" size={23} color="#172017" />
+        <TouchableOpacity style={styles.headerIconBtn} onPress={() => router.back()}
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+          <Ionicons name="arrow-back" size={23} color="#172017" />
         </TouchableOpacity>
-
         <View style={styles.headerTextWrapper}>
           <Text style={styles.headerTitle}>Personal Loan Application</Text>
           <Text style={styles.headerSubtitle}>New loan</Text>
@@ -52,8 +51,8 @@ export default function Loan({ navigation }: any) {
             <Text style={styles.cardHeaderLabel}>Select Loan Amount</Text>
 
             <View style={styles.amountControlRow}>
-              <TouchableOpacity 
-                style={[styles.stepButton, loanAmount <= MIN_AMOUNT && styles.stepButtonDisabled]} 
+              <TouchableOpacity
+                style={[styles.stepButton, loanAmount <= MIN_AMOUNT && styles.stepButtonDisabled]}
                 onPress={DecrementAmount}
                 disabled={loanAmount <= MIN_AMOUNT}>
                 <Ionicons name="remove" size={20} color={loanAmount <= MIN_AMOUNT ? "#A3B8AD" : "#173627"} />
@@ -61,8 +60,8 @@ export default function Loan({ navigation }: any) {
 
               <Text style={styles.cardMainValue}>{formatCurrency(loanAmount)}</Text>
 
-              <TouchableOpacity 
-                style={[styles.stepButton, loanAmount >= MAX_AMOUNT && styles.stepButtonDisabled]} 
+              <TouchableOpacity
+                style={[styles.stepButton, loanAmount >= MAX_AMOUNT && styles.stepButtonDisabled]}
                 onPress={IncrementAmount}
                 disabled={loanAmount >= MAX_AMOUNT}>
                 <Ionicons name="add" size={20} color={loanAmount >= MAX_AMOUNT ? "#A3B8AD" : "#173627"} />
@@ -100,15 +99,15 @@ export default function Loan({ navigation }: any) {
               <TouchableOpacity
                 key={tenure}
                 style={[styles.tenurePill, isSelected && styles.tenurePillSelected]}
-                activeOpacity={0.8} 
+                activeOpacity={0.8}
                 onPress={() => setSelectedTenure(tenure)}>
-                  
+
                 {isSelected && (
                   <View style={styles.checkmarkBadge}>
                     <Ionicons name="checkmark" size={10} color="#244d41" />
                   </View>
                 )}
-                
+
                 <Text style={styles.tenurePillText}>
                   <Text style={[styles.tenureNumber, isSelected && styles.tenureNumberSelected]}>
                     {tenure}{'\n'}
@@ -170,9 +169,9 @@ export default function Loan({ navigation }: any) {
           </View>
         </View>
 
-        <TouchableOpacity style={styles.primaryButton}activeOpacity={0.88} onPress={() => router.push("/LoanKYC")}>
-           <Text style={styles.primaryButtonText}>
-              Proceed to Personal Details
+        <TouchableOpacity style={styles.primaryButton} activeOpacity={0.88} onPress={() => router.push("/LoanKYC")}>
+          <Text style={styles.primaryButtonText}>
+            Proceed to Personal Details
           </Text>
         </TouchableOpacity>
       </ScrollView>

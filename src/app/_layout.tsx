@@ -39,7 +39,10 @@ export default function _layout() {
       <Stack.Screen name="(auth)" options={{headerShown: false}}/>
 
       <Stack.Screen name="(tabs)" options={{headerShown: false}}/>
-      <Stack.Screen name='LoanKYC' options={{title:'Personal Loan Application'}}  />
+      <Stack.Screen name='LoanKYC' options={{title:'Personal Loan Application', headerShown: false}}  />
+      <Stack.Screen name='LoanSanction' options={{title:'Personal Loan Application', headerShown: false}}  />
+
+
 
       <Stack.Screen name='self_transfer' options={{title:'Self Transfer',headerTitleAlign: 'center'}}  />
       <Stack.Screen name='utility_bills' options={{title:'Utility Bills',headerTitleAlign: 'center'}}  />

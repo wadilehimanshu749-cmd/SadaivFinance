@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {View,Text,TextInput,TouchableOpacity,StyleSheet,ScrollView,Image,ImageBackground} from "react-native";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Image, ImageBackground } from "react-native";
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { router } from "expo-router";
@@ -22,180 +22,180 @@ export default function signup() {
       {/* <Image  source={require('@/assets/images/wave2.png')}  style={styles.topWave}  resizeMode="stretch" tintColor={'#88ceab'}  />
       <Image source={require('@/assets/images/wave3.png')} style={styles.bottomWave} resizeMode="stretch" tintColor={'#88ceab'} /> */}
       <ImageBackground source={require('@/assets/images/signup-bg.png')} resizeMode="cover" style={styles.backgroundimg}>
-      <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
-        <TouchableOpacity style={styles.backButton}>
-          <Text style={styles.backText}>
-            ‹
-          </Text>
-
-          <Text style={styles.backLabel}>
-            Back
-          </Text>
-        </TouchableOpacity>
-
-        <View style={styles.logoContainer}>
-
-          <View style={styles.logoCircle}>
-                <Image source={require('@/assets/images/comp_logo.png')} style={styles.logoIcon} />
-
-          </View>
-
-          <Text style={styles.logoText}>
-            S A D A I V <Text style={styles.logoGreen}>Finance</Text>
-          </Text>
-
-        </View>
-
-        <View style={styles.headingContainer}>
-
-          <Text style={styles.title}>
-            Create your account
-          </Text>
-
-          <Text style={styles.subtitle}>
-            Join S A D A I V Finance and make payments easier
-          </Text>
-
-        </View>
-
-        <View style={styles.card}>
-          
-
-          <Text style={styles.label}>
-            Full Name
-          </Text>
-
-          <View style={styles.inputContainer}>
-         <View style={{marginRight:10}}>
-              <FontAwesome size={20} name="user" color="#78aa8e" />
-            </View>
-            <TextInput style={styles.input} placeholder="Enter your full name" placeholderTextColor="#9AA29D" value={name}  onChangeText={setName}/>
-
-          </View>
-
-          <Text style={styles.label}>
-            Mobile Number
-          </Text>
-
-          <View style={styles.inputContainer}>
-
-            <Text style={styles.countryCode}>
-              +91
+        <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
+          <TouchableOpacity style={styles.backButton}>
+            <Text style={styles.backText}>
+              ‹
             </Text>
 
-            <View style={styles.verticalLine} />
+            <Text style={styles.backLabel}>
+              Back
+            </Text>
+          </TouchableOpacity>
 
-            <TextInput style={styles.input} placeholder="Enter mobile number" placeholderTextColor="#9AA29D" keyboardType="phone-pad" maxLength={10} value={mobile} onChangeText={setMobile} />
+          <View style={styles.logoContainer}>
+
+            <View style={styles.logoCircle}>
+              <Image source={require('@/assets/images/comp_logo.png')} style={styles.logoIcon} />
+
+            </View>
+
+            <Text style={styles.logoText}>
+              S A D A I V <Text style={styles.logoGreen}>Finance</Text>
+            </Text>
 
           </View>
 
-          <Text style={styles.label}>
-            Email Address
-          </Text>
+          <View style={styles.headingContainer}>
 
-          <View style={styles.inputContainer}>
+            <Text style={styles.title}>
+              Create your account
+            </Text>
 
-           <AntDesign size={20} name="mail" color={'#78aa8e'} style={{marginRight:10}} />
-
-            <TextInput  style={styles.input}  placeholder="Enter email address"  placeholderTextColor="#9AA29D"  keyboardType="email-address" autoCapitalize="none" value={email} onChangeText={setEmail}/>
+            <Text style={styles.subtitle}>
+              Join S A D A I V Finance and make payments easier
+            </Text>
 
           </View>
 
-          <Text style={styles.label}>
-            Password
-          </Text>
+          <View style={styles.card}>
 
-          <View style={styles.inputContainer}>
 
-            <TextInput style={styles.input}  placeholder="Create a password"  placeholderTextColor="#9AA29D"  secureTextEntry={!showPassword} value={password} onChangeText={setPassword}/>
+            <Text style={styles.label}>
+              Full Name
+            </Text>
 
-            <TouchableOpacity
-              onPress={() => setShowPassword(!showPassword)}
-            >
-              <Text style={styles.showText}>
-                {showPassword ? "Hide" : "Show"}
+            <View style={styles.inputContainer}>
+              <View style={{ marginRight: 10 }}>
+                <FontAwesome size={20} name="user" color="#78aa8e" />
+              </View>
+              <TextInput style={styles.input} placeholder="Enter your full name" placeholderTextColor="#9AA29D" value={name} onChangeText={setName} />
+
+            </View>
+
+            <Text style={styles.label}>
+              Mobile Number
+            </Text>
+
+            <View style={styles.inputContainer}>
+
+              <Text style={styles.countryCode}>
+                +91
               </Text>
+
+              <View style={styles.verticalLine} />
+
+              <TextInput style={styles.input} placeholder="Enter mobile number" placeholderTextColor="#9AA29D" keyboardType="phone-pad" maxLength={10} value={mobile} onChangeText={setMobile} />
+
+            </View>
+
+            <Text style={styles.label}>
+              Email Address
+            </Text>
+
+            <View style={styles.inputContainer}>
+
+              <AntDesign size={20} name="mail" color={'#78aa8e'} style={{ marginRight: 10 }} />
+
+              <TextInput style={styles.input} placeholder="Enter email address" placeholderTextColor="#9AA29D" keyboardType="email-address" autoCapitalize="none" value={email} onChangeText={setEmail} />
+
+            </View>
+
+            <Text style={styles.label}>
+              Password
+            </Text>
+
+            <View style={styles.inputContainer}>
+
+              <TextInput style={styles.input} placeholder="Create a password" placeholderTextColor="#9AA29D" secureTextEntry={!showPassword} value={password} onChangeText={setPassword} />
+
+              <TouchableOpacity
+                onPress={() => setShowPassword(!showPassword)}
+              >
+                <Text style={styles.showText}>
+                  {showPassword ? "Hide" : "Show"}
+                </Text>
+              </TouchableOpacity>
+
+            </View>
+
+            <Text style={styles.label}>
+              Confirm Password
+            </Text>
+
+            <View style={styles.inputContainer}>
+
+              <TextInput style={styles.input} placeholder="Confirm your password" placeholderTextColor="#9AA29D" secureTextEntry={!showConfirm} value={confirmPassword} onChangeText={setConfirmPassword} />
+
+              <TouchableOpacity
+                onPress={() => setShowConfirm(!showConfirm)}>
+                <Text style={styles.showText}>
+                  {showConfirm ? "Hide" : "Show"}
+                </Text>
+              </TouchableOpacity>
+
+            </View>
+
+            <View style={styles.termsContainer}>
+
+              <View style={styles.checkbox}>
+                <Text style={styles.check}>
+                  ✓
+                </Text>
+              </View>
+
+              <Text style={styles.termsText}>
+                I agree to Sadaiv's{" "}
+                <Text style={styles.termsGreen}>
+                  Terms & Conditions
+                </Text>{" "}
+                and{" "}
+                <Text style={styles.termsGreen}>
+                  Privacy Policy
+                </Text>
+              </Text>
+
+            </View>
+
+            <TouchableOpacity style={styles.signupButton} activeOpacity={0.8}>
+
+              <Text style={styles.signupButtonText}>
+                Create Account
+              </Text>
+
             </TouchableOpacity>
 
           </View>
 
-          <Text style={styles.label}>
-            Confirm Password
-          </Text>
+          <View style={styles.loginContainer}>
 
-          <View style={styles.inputContainer}>
+            <Text style={styles.accountText}>
+              Already have an account?
+            </Text>
 
-            <TextInput style={styles.input}  placeholder="Confirm your password"  placeholderTextColor="#9AA29D"  secureTextEntry={!showConfirm} value={confirmPassword} onChangeText={setConfirmPassword} />
+            <TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() => setShowConfirm(!showConfirm)}>
-              <Text style={styles.showText}>
-                {showConfirm ? "Hide" : "Show"}
+              <Text style={styles.loginText}>
+                Login
               </Text>
+
             </TouchableOpacity>
 
           </View>
 
-          <View style={styles.termsContainer}>
+          <View style={styles.securityContainer}>
 
-            <View style={styles.checkbox}>
-              <Text style={styles.check}>
-                ✓
-              </Text>
-            </View>
+            <Text style={styles.securityIcon}>
+              ✓
+            </Text>
 
-            <Text style={styles.termsText}>
-              I agree to Sadaiv's{" "}
-              <Text style={styles.termsGreen}>
-                Terms & Conditions
-              </Text>{" "}
-              and{" "}
-              <Text style={styles.termsGreen}>
-                Privacy Policy
-              </Text>
+            <Text style={styles.securityText}>
+              Your information is securely encrypted
             </Text>
 
           </View>
 
-          <TouchableOpacity style={styles.signupButton} activeOpacity={0.8}>
-
-            <Text style={styles.signupButtonText}>
-              Create Account
-            </Text>
-
-          </TouchableOpacity>
-
-        </View>
-
-        <View style={styles.loginContainer}>
-
-          <Text style={styles.accountText}>
-            Already have an account?
-          </Text>
-
-          <TouchableOpacity>
-
-            <Text style={styles.loginText}>
-              Login
-            </Text>
-
-          </TouchableOpacity>
-
-        </View>
-
-        <View style={styles.securityContainer}>
-
-          <Text style={styles.securityIcon}>
-            ✓
-          </Text>
-
-          <Text style={styles.securityText}>
-            Your information is securely encrypted
-          </Text>
-
-        </View>
-
-      </ScrollView>
+        </ScrollView>
       </ImageBackground>
 
     </SafeAreaView>
@@ -345,7 +345,7 @@ const styles = StyleSheet.create({
   },
 
   inputIcon: {
-    
+
     fontSize: 13,
     color: "#3E6B4A",
     fontWeight: "700",
@@ -371,7 +371,7 @@ const styles = StyleSheet.create({
     height: "100%",
     fontSize: 12,
     color: "#17221B",
-     fontFamily: "DMSanRegular",
+    fontFamily: "DMSanRegular",
   },
 
   showText: {
@@ -484,8 +484,8 @@ const styles = StyleSheet.create({
     fontFamily: "DMSanRegular",
 
   },
-  backgroundimg:{
-    flex:1,
+  backgroundimg: {
+    flex: 1,
     width: '100%',
     height: '100%'
   }

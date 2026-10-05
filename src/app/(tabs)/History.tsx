@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import {View,Text,StyleSheet,Image,TouchableOpacity,TextInput,ScrollView,ImageBackground} from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput, ScrollView, ImageBackground } from "react-native";
 
 export default function History() {
 
@@ -10,15 +10,15 @@ export default function History() {
 
   return (
 
-      <ScrollView style={styles.container} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled" >
-          <SafeAreaView style={styles.outerContainer} edges={["top"]}>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled" >
+      <SafeAreaView style={styles.outerContainer} edges={["top"]}>
 
 
-      <ImageBackground source={require("@/assets/images/wave2.png")} style={styles.header} imageStyle={styles.headerImageStyle}>
-        <Text style={styles.headerText}>
-          Money
-        </Text>
-      </ImageBackground>
+        <ImageBackground source={require("@/assets/images/wave2.png")} style={styles.header} imageStyle={styles.headerImageStyle}>
+          <Text style={styles.headerText}>
+            Money
+          </Text>
+        </ImageBackground>
         <View style={styles.balance_container}>
 
           <View style={styles.img_container}>
@@ -235,49 +235,49 @@ export default function History() {
         {(selectedTab === "All" ||
           selectedTab === "Received") && (
 
-          <TouchableOpacity style={styles.transactionCard}>
+            <TouchableOpacity style={styles.transactionCard}>
 
-            <View style={styles.transactionIconReceived}>
+              <View style={styles.transactionIconReceived}>
 
-              <Text style={styles.iconText}>
-                ↓
-              </Text>
+                <Text style={styles.iconText}>
+                  ↓
+                </Text>
 
-            </View>
-
-
-            <View style={styles.transactionDetails}>
-
-              <Text style={styles.personName}>
-                Received from Neha Singh
-              </Text>
-
-              <Text style={styles.upiId}>
-                neha.singh@upi
-              </Text>
-
-              <Text style={styles.transactionTime}>
-                Today, 08:45 AM
-              </Text>
-
-            </View>
+              </View>
 
 
-            <View style={styles.amountContainer}>
+              <View style={styles.transactionDetails}>
 
-              <Text style={styles.receivedAmount}>
-                + ₹5,000
-              </Text>
+                <Text style={styles.personName}>
+                  Received from Neha Singh
+                </Text>
 
-              <Text style={styles.successText}>
-                Successful
-              </Text>
+                <Text style={styles.upiId}>
+                  neha.singh@upi
+                </Text>
 
-            </View>
+                <Text style={styles.transactionTime}>
+                  Today, 08:45 AM
+                </Text>
 
-          </TouchableOpacity>
+              </View>
 
-        )}
+
+              <View style={styles.amountContainer}>
+
+                <Text style={styles.receivedAmount}>
+                  + ₹5,000
+                </Text>
+
+                <Text style={styles.successText}>
+                  Successful
+                </Text>
+
+              </View>
+
+            </TouchableOpacity>
+
+          )}
 
 
         <Text style={styles.dateTitle}>
@@ -333,49 +333,49 @@ export default function History() {
         {(selectedTab === "All" ||
           selectedTab === "Received") && (
 
-          <TouchableOpacity style={styles.transactionCard}>
+            <TouchableOpacity style={styles.transactionCard}>
 
-            <View style={styles.transactionIconReceived}>
+              <View style={styles.transactionIconReceived}>
 
-              <Text style={styles.iconText}>
-                ↓
-              </Text>
+                <Text style={styles.iconText}>
+                  ↓
+                </Text>
 
-            </View>
-
-
-            <View style={styles.transactionDetails}>
-
-              <Text style={styles.personName}>
-                Received from Amit
-              </Text>
-
-              <Text style={styles.upiId}>
-                amit@upi
-              </Text>
-
-              <Text style={styles.transactionTime}>
-                Yesterday, 04:18 PM
-              </Text>
-
-            </View>
+              </View>
 
 
-            <View style={styles.amountContainer}>
+              <View style={styles.transactionDetails}>
 
-              <Text style={styles.receivedAmount}>
-                + ₹3,000
-              </Text>
+                <Text style={styles.personName}>
+                  Received from Amit
+                </Text>
 
-              <Text style={styles.successText}>
-                Successful
-              </Text>
+                <Text style={styles.upiId}>
+                  amit@upi
+                </Text>
 
-            </View>
+                <Text style={styles.transactionTime}>
+                  Yesterday, 04:18 PM
+                </Text>
 
-          </TouchableOpacity>
+              </View>
 
-        )}
+
+              <View style={styles.amountContainer}>
+
+                <Text style={styles.receivedAmount}>
+                  + ₹3,000
+                </Text>
+
+                <Text style={styles.successText}>
+                  Successful
+                </Text>
+
+              </View>
+
+            </TouchableOpacity>
+
+          )}
 
         <Text style={styles.dateTitle}>
           12 May 2026
@@ -452,11 +452,11 @@ export default function History() {
           </View>
 
         </View>
-</SafeAreaView>
+      </SafeAreaView>
 
-      </ScrollView>
+    </ScrollView>
 
-    
+
   );
 }
 
@@ -469,22 +469,22 @@ const styles = StyleSheet.create({
   },
 
   header: {
-   height: 110,
-   width: "auto",
-   marginLeft: -18,
-   marginRight: -55,
-   alignItems: "flex-start",
-   justifyContent: "flex-end",
-   paddingHorizontal: 18,
-   paddingBottom: 5,
-   overflow: "hidden",
+    height: 110,
+    width: "auto",
+    marginLeft: -18,
+    marginRight: -55,
+    alignItems: "flex-start",
+    justifyContent: "flex-end",
+    paddingHorizontal: 18,
+    paddingBottom: 5,
+    overflow: "hidden",
   },
-headerImageStyle: {
-  width: "100%",
-  height: "100%",
-  resizeMode: "cover",
-  opacity: 0.5,
-  tintColor: '#7fb092'
+  headerImageStyle: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
+    opacity: 0.5,
+    tintColor: '#7fb092'
   },
 
   headerText: {
@@ -498,7 +498,7 @@ headerImageStyle: {
   container: {
     flex: 1,
     paddingHorizontal: 18,
-    
+
   },
 
   balance_container: {
@@ -802,5 +802,5 @@ headerImageStyle: {
     color: "#78817B",
     marginTop: 3,
   },
- 
+
 });
