@@ -1,8 +1,10 @@
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { router } from "expo-router";
+import { FontAwesome6 } from '@react-native-vector-icons/fontawesome6';
 import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { ImageBackground } from 'expo-image';
 
 export default function LoanSanction() {
     return (
@@ -21,7 +23,8 @@ export default function LoanSanction() {
 
             <ScrollView style={styles.scrollcontent}>
 
-                <View style={styles.card}>
+                <ImageBackground source={require('@/assets/images/congrate.png')} style={styles.card} imageStyle={styles.cardbackground}>
+
                     <View style={styles.cardheader}>
                         <View style={styles.badge}>
                             <Ionicons name="checkmark-circle-sharp" size={23} color="#a6e5a5" />
@@ -29,13 +32,42 @@ export default function LoanSanction() {
 
                         </View>
                         <View style={styles.cardiconcontainer}>
-                            <Image source={require('@/assets/images/confetti.png')} style={styles.icon} />
+
+                        </View>
+
+                    </View>
+
+                    <View style={styles.loancontainer}>
+
+                        <View style={styles.companyLogo}>
+                            <Ionicons name="business" size={27} color="#0F4A38" />
+                        </View>
+
+                        <View style={styles.companyInfo}>
+                            <Text style={styles.loanlabel}>
+                                Loan provided by
+                            </Text>
+
+                            <View style={styles.companyNameRow}>
+                                <Text style={styles.loancompany}>
+                                    ABC Finance Ltd.
+                                </Text>
+
+                                <Ionicons
+                                    name="checkmark-circle"
+                                    size={18}
+                                    color="#a6e5a4" />
+                            </View>
+
+                            <Text style={styles.companySubtext}>
+                                Trusted lending partner
+                            </Text>
                         </View>
 
                     </View>
 
                     <View style={styles.cardlabel}>
-                        <Text style={styles.label}>Total Sanctioned Amount</Text>
+                        <Text style={styles.label}>Approved loan amount</Text>
                         <Text style={styles.labelamount}>₹10,00,000</Text>
 
                     </View>
@@ -60,9 +92,12 @@ export default function LoanSanction() {
 
                     </View>
 
+                </ImageBackground>
+
+                <View style={styles.card2}>
                     <View style={styles.row}>
                         <Text style={styles.rowtext}>Processing fee</Text>
-                        <Text style={styles.rowvaluetext}>₹-15,000</Text>
+                        <Text style={styles.rowvaluetext}>-₹15,000</Text>
 
                     </View>
 
@@ -70,31 +105,33 @@ export default function LoanSanction() {
 
                     <View style={styles.row}>
                         <Text style={styles.rowtext}>You'll receive</Text>
-                        <Text style={styles.rowvaluetext}>₹9,80,00</Text>
+                        <Text style={styles.santionedamound}>₹9,80,00</Text>
 
                     </View>
 
                     <View style={styles.horizontalDivider} />
 
                     <View style={styles.row}>
-                        <Text style={styles.rowtext}>Disbursal Bank A/c:</Text>
+                        <Text style={styles.rowtext}>Disbursal account</Text>
                         <Text style={styles.rowvaluetext}>HDFC Bank ****1234</Text>
 
                     </View>
-
                 </View>
 
                 <View style={styles.banner}>
+                    <FontAwesome6 name="signature" size={25} iconStyle="solid" color="green" />
+
                     <Text style={styles.bannertext}>
                         {'e-NACH mandate signed. Your money\narrives within 24 hours of confirming.'}
                     </Text>
 
                 </View>
                 <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>{'Proceed to Disbursal (e-NACH Signed)'}</Text>
+                    <Text style={styles.buttonText}>Accept and get fund</Text>
                 </TouchableOpacity>
 
                 <Text style={styles.footerText}>By continuing, you accept the loan terms</Text>
+
 
             </ScrollView>
 
@@ -113,13 +150,13 @@ const styles = StyleSheet.create({
         padding: 4,
     },
     header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingTop: 8,
-    paddingBottom: 16,
-    marginTop: 10,
-  },
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 20,
+        paddingTop: 8,
+        paddingBottom: 16,
+        marginTop: 10,
+    },
     headerTextWrapper: {
         flex: 1,
         marginLeft: 12,
@@ -130,7 +167,7 @@ const styles = StyleSheet.create({
         color: '#153123',
         letterSpacing: -0.3,
     },
-  
+
     scrollcontent: {
         paddingHorizontal: 20,
         paddingTop: 10,
@@ -145,6 +182,20 @@ const styles = StyleSheet.create({
         marginBottom: 20
 
     },
+    cardbackground: {
+        borderRadius: 15
+
+    },
+
+    card2: {
+        backgroundColor: '#196950',
+        borderRadius: 15,
+        padding: 24,
+        overflow: 'hidden',
+        marginBottom: 20,
+
+    },
+
     cardheader: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -156,10 +207,11 @@ const styles = StyleSheet.create({
     badge: {
         flexDirection: 'row',
         alignItems: 'center',
-        borderRadius: 15,
+        borderRadius: 20,
         backgroundColor: '#1a6951',
         paddingHorizontal: 12,
         paddingVertical: 6,
+
 
     },
     badgetext: {
@@ -182,15 +234,61 @@ const styles = StyleSheet.create({
         fontFamily: 'DMSanRegular'
 
     },
+    loancontainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderRadius: 16,
+        marginBottom: 18,
+    },
+
+    companyLogo: {
+        width: 50,
+        height: 50,
+        borderRadius: 14,
+        backgroundColor: '#FFFFFF',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: 14,
+    },
+
+    companyInfo: {
+        flex: 1,
+    },
+
+    loanlabel: {
+        fontSize: 11,
+        color: '#fbffff',
+        fontFamily: 'DMSanRegular',
+        marginBottom: 3,
+    },
+
+    companyNameRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+
+    loancompany: {
+        fontSize: 18,
+        color: '#fbffff',
+        fontFamily: 'SoraSemibold',
+        marginRight: 6,
+    },
+
+    companySubtext: {
+        fontSize: 11,
+        color: '#fbffff',
+        fontFamily: 'DMSanRegular',
+        marginTop: 3,
+    },
 
     label: {
-        color: '#b5e9d6'
+        color: '#b5e9d6',
+        fontFamily: 'DMSanRegular'
     },
     labelamount: {
         fontSize: 30,
         color: '#b5e9d6',
         fontFamily: 'SoraBold'
-
     },
 
     containerrow: {
@@ -227,12 +325,17 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     rowtext: {
-        color: '#8DB2A8',
+        color: '#f8fefc',
         fontSize: 15,
         fontFamily: 'DMSanRegular'
     },
     rowvaluetext: {
-        color: '#FFFFFF',
+        color: '#f8fefc',
+        fontSize: 16,
+        fontFamily: 'DMSanSemibold'
+    },
+    santionedamound:{
+        color: '#bff386',
         fontSize: 16,
         fontFamily: 'DMSanSemibold'
     },
@@ -243,16 +346,19 @@ const styles = StyleSheet.create({
         marginVertical: 16,
     },
     banner: {
+        flexDirection: 'row',
         backgroundColor: '#e2f2e8',
         padding: 20,
-        borderRadius: 15
+        borderRadius: 15,
+        alignItems: 'center'
 
     },
     bannertext: {
         color: '#1A4737',
         fontSize: 14,
         lineHeight: 20,
-        fontFamily: 'DMSanRegular'
+        fontFamily: 'DMSanRegular',
+        marginLeft: 10
     },
     button: {
         backgroundColor: '#0D4738',

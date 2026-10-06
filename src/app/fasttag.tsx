@@ -47,152 +47,151 @@ export default function FastTag() {
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={styles.infoCard}>
-        <View style={styles.infoIcon}>
-          <FontAwesome6 name="car-rear" size={30} iconStyle="solid" color="green" />
+        <View style={styles.infoCard}>
+          <View style={styles.infoIcon}>
+            <FontAwesome6 name="car-rear" size={30} iconStyle="solid" color="green" />
+          </View>
+          <View>
+            <Text style={styles.infoTitle}>Recharge your FASTag</Text>
+            <Text style={styles.infoSubtitle}>Fast • Safe • Convenient</Text>
+          </View>
         </View>
-        <View>
-          <Text style={styles.infoTitle}>Recharge your FASTag</Text>
-          <Text style={styles.infoSubtitle}>Fast • Safe • Convenient</Text>
+
+        <View style={styles.inputBox2}>
+          <TextInput
+            style={styles.input}
+            placeholder="Search by Bank name"
+            placeholderTextColor="#89918C"
+          />
         </View>
-      </View>
 
-      <View style={styles.inputBox2}>
-        <TextInput
-          style={styles.input}
-          placeholder="Search by Bank name"
-          placeholderTextColor="#89918C"
-        />
-      </View>
+        <Text style={styles.sectionTitle}>Popular banks</Text>
 
-      <Text style={styles.sectionTitle}>Popular banks</Text>
+        <View style={styles.providerGrid}>
+          <TouchableOpacity
+            style={styles.providerCard}
+            onPress={() => selectProvider("IDFC FIRST FASTag")}
+            activeOpacity={0.7}>
+            <View style={styles.logoBox}>
+              <Image source={require('@/assets/images/IDFC.png')} style={styles.imagebox} />
+            </View>
+            <Text style={styles.providerName}>IDFC FIRST FASTag</Text>
+            <View style={styles.popularTag}>
+              <Text style={styles.popularText}>Popular</Text>
+            </View>
+          </TouchableOpacity>
 
-      <View style={styles.providerGrid}>
-        <TouchableOpacity
-          style={styles.providerCard}
-          onPress={() => selectProvider("IDFC FIRST FASTag")}
-          activeOpacity={0.7}
+          <TouchableOpacity
+            style={styles.providerCard}
+            onPress={() => selectProvider("ICICI Bank FASTag")}
+            activeOpacity={0.7}
+          >
+            <View style={styles.logoBox}>
+              <Image source={require('@/assets/images/ICICI.png')} style={styles.imagebox} />
+            </View>
+            <Text style={styles.providerName}>ICICI Bank FASTag</Text>
+            <View style={styles.popularTag}>
+              <Text style={styles.popularText}>Popular</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.providerCard}
+            onPress={() => selectProvider("State Bank of India SBI - FASTag")}
+            activeOpacity={0.7}
+          >
+            <View style={styles.logoBox}>
+              <Image source={require('@/assets/images/sboi.png')} style={styles.imagebox} />
+            </View>
+            <Text style={styles.providerName}>
+              State Bank of India {'\n'}SBI - FASTag
+            </Text>
+            <View style={styles.popularTag}>
+              <Text style={styles.popularText}>Popular</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.providerCard}
+            onPress={() => selectProvider("Axis Bank FAstag")}
+            activeOpacity={0.7}
+          >
+            <View style={styles.logoBox}>
+              <Image source={require('@/assets/images/axis.png')} style={{ width: 70, height: 50, resizeMode: "contain" }} />
+            </View>
+            <Text style={styles.providerName}>Axis Bank FAstag</Text>
+            <View style={styles.popularTag}>
+              <Text style={styles.popularText}>Popular</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.bottomInfo}>
+          <Text style={styles.infoSmallIcon}>●</Text>
+          <Text style={styles.bottomInfoText}>Select your FASTag provider to continue</Text>
+        </View>
+
+        <Modal
+          visible={showPopup}
+          transparent={true}
+          animationType="slide"
+          onRequestClose={() => setShowPopup(false)}
         >
-          <View style={styles.logoBox}>
-            <Image source={require('@/assets/images/IDFC.png')} style={styles.imagebox} />
-          </View>
-          <Text style={styles.providerName}>IDFC FIRST FASTag</Text>
-          <View style={styles.popularTag}>
-            <Text style={styles.popularText}>Popular</Text>
-          </View>
-        </TouchableOpacity>
+          <View style={styles.modalContainer}>
+            <Pressable style={styles.modalOverlay} onPress={() => setShowPopup(false)} />
 
-        <TouchableOpacity 
-          style={styles.providerCard} 
-          onPress={() => selectProvider("ICICI Bank FASTag")} 
-          activeOpacity={0.7}
-        >
-          <View style={styles.logoBox}>
-            <Image source={require('@/assets/images/ICICI.png')} style={styles.imagebox} />
-          </View>
-          <Text style={styles.providerName}>ICICI Bank FASTag</Text>
-          <View style={styles.popularTag}>
-            <Text style={styles.popularText}>Popular</Text>
-          </View>
-        </TouchableOpacity>
+            <View style={styles.bottomSheet}>
+              <TouchableOpacity style={styles.closeButton} onPress={() => setShowPopup(false)}>
+                <Text style={styles.closeText}>×</Text>
+              </TouchableOpacity>
 
-        <TouchableOpacity 
-          style={styles.providerCard} 
-          onPress={() => selectProvider("State Bank of India SBI - FASTag")} 
-          activeOpacity={0.7}
-        >
-          <View style={styles.logoBox}>
-            <Image source={require('@/assets/images/sboi.png')} style={styles.imagebox} />
-          </View>
-          <Text style={styles.providerName}>
-            State Bank of India {'\n'}SBI - FASTag
-          </Text>
-          <View style={styles.popularTag}>
-            <Text style={styles.popularText}>Popular</Text>
-          </View>
-        </TouchableOpacity>
+              <Text style={styles.popupHeading}>FASTag Details</Text>
 
-        <TouchableOpacity 
-          style={styles.providerCard} 
-          onPress={() => selectProvider("Axis Bank FAstag")} 
-          activeOpacity={0.7}
-        >
-          <View style={styles.logoBox}>
-            <Image source={require('@/assets/images/axis.png')} style={{ width: 70, height: 50, resizeMode: "contain" }} />
-          </View>
-          <Text style={styles.providerName}>Axis Bank FAstag</Text>
-          <View style={styles.popularTag}>
-            <Text style={styles.popularText}>Popular</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+              <View style={styles.selectedProvider}>
+                <View style={styles.popupLogo}>
+                  <Image source={getProviderLogo(selectedProvider)} style={styles.imagebox} />
+                </View>
 
-      <View style={styles.bottomInfo}>
-        <Text style={styles.infoSmallIcon}>●</Text>
-        <Text style={styles.bottomInfoText}>Select your FASTag provider to continue</Text>
-      </View>
-
-      <Modal
-        visible={showPopup}
-        transparent={true}
-        animationType="slide"
-        onRequestClose={() => setShowPopup(false)}
-      >
-        <View style={styles.modalContainer}>
-          <Pressable style={styles.modalOverlay} onPress={() => setShowPopup(false)} />
-
-          <View style={styles.bottomSheet}>
-            <TouchableOpacity style={styles.closeButton} onPress={() => setShowPopup(false)}>
-              <Text style={styles.closeText}>×</Text>
-            </TouchableOpacity>
-
-            <Text style={styles.popupHeading}>FASTag Details</Text>
-
-            <View style={styles.selectedProvider}>
-              <View style={styles.popupLogo}>
-                <Image source={getProviderLogo(selectedProvider)} style={styles.imagebox} />
+                <View>
+                  <Text style={styles.selectedLabel}>Selected Provider</Text>
+                  <Text style={styles.selectedName}>{selectedProvider}</Text>
+                </View>
               </View>
 
-              <View>
-                <Text style={styles.selectedLabel}>Selected Provider</Text>
-                <Text style={styles.selectedName}>{selectedProvider}</Text>
+              <Text style={styles.inputLabel}>Vehicle Number</Text>
+
+              <View style={styles.vehicleInputBox}>
+                <TextInput
+                  style={styles.vehicleInput}
+                  placeholder="e.g. MH12AB1234"
+                  placeholderTextColor="#8A928D"
+                  value={vehicleNumber}
+                  onChangeText={setVehicleNumber}
+                  autoCapitalize="characters"
+                  maxLength={10}
+                />
+              </View>
+
+              <Text style={styles.helperText}>Enter your vehicle number linked with FASTag</Text>
+
+              <TouchableOpacity
+                style={[
+                  styles.confirmButton,
+                  vehicleNumber.trim() === "" && styles.disabledButton,
+                ]}
+                onPress={confirmProvider}
+                disabled={vehicleNumber.trim() === ""}
+              >
+                <Text style={styles.confirmText}>Confirm & Continue</Text>
+              </TouchableOpacity>
+
+              <View style={styles.secureRow}>
+                <Text style={styles.lockIcon}>🔒</Text>
+                <Text style={styles.secureText}>Your information is secure</Text>
               </View>
             </View>
-
-            <Text style={styles.inputLabel}>Vehicle Number</Text>
-
-            <View style={styles.vehicleInputBox}>
-              <TextInput
-                style={styles.vehicleInput}
-                placeholder="e.g. MH12AB1234"
-                placeholderTextColor="#8A928D"
-                value={vehicleNumber}
-                onChangeText={setVehicleNumber}
-                autoCapitalize="characters"
-                maxLength={10}
-              />
-            </View>
-
-            <Text style={styles.helperText}>Enter your vehicle number linked with FASTag</Text>
-
-            <TouchableOpacity
-              style={[
-                styles.confirmButton,
-                vehicleNumber.trim() === "" && styles.disabledButton,
-              ]}
-              onPress={confirmProvider}
-              disabled={vehicleNumber.trim() === ""}
-            >
-              <Text style={styles.confirmText}>Confirm & Continue</Text>
-            </TouchableOpacity>
-
-            <View style={styles.secureRow}>
-              <Text style={styles.lockIcon}>🔒</Text>
-              <Text style={styles.secureText}>Your information is secure</Text>
-            </View>
           </View>
-        </View>
-      </Modal>
+        </Modal>
       </ScrollView>
     </View>
   );
@@ -364,7 +363,7 @@ const styles = StyleSheet.create({
   },
   popupLogo: {
     width: 52,
-    height: 45,    borderRadius: 9,
+    height: 45, borderRadius: 9,
     justifyContent: "center",
     alignItems: "center",
     marginRight: 12,
